@@ -39,15 +39,28 @@ export default function Home() {
       <p>Painted slowly. Collected forever.</p>
     </div>
 
-    <section className="story-intro" id="stories">
-      <span>Scroll to enter</span>
-      <div><p>THE PORTRAIT SERIES · I</p><h1>Before an artwork<br />is seen, it is <em>felt.</em></h1></div>
-      <p className="intro-note">Four portraits. Four inner worlds.<br/>A collection shaped by culture, beauty and identity.</p>
-      <div className="intro-gallery" aria-label="Featured paintings"><img src="/artworks/golden-poise.png" alt="Golden Poise" /><img src="/artworks/bridal-legacy.png" alt="Bridal Legacy" /><img src="/artworks/quiet-elegance.png" alt="Quiet Elegance" /></div>
+    <section className="home-hero" id="stories">
+      <div className="hero-wash" />
+      <p className="hero-edition">THE PORTRAIT SERIES · 2026</p>
+      <div className="hero-type">
+        <span>PAINTED STORIES OF</span>
+        <h1>Culture<br/><em>in every</em><br/>detail.</h1>
+        <p>Original portraits exploring heritage, ceremony and the many ways a woman carries home within her.</p>
+        <a href="#story-01">Enter the stories <b>↓</b></a>
+      </div>
+      <div className="hero-salon" aria-label="Painted Gold portrait collection">
+        <figure className="salon-main"><img src="/artworks/golden-poise.png" alt="Golden Poise, an original portrait by Niki"/><figcaption>01 · GOLDEN POISE</figcaption></figure>
+        <figure className="salon-top"><img src="/artworks/bridal-legacy.png" alt="Bridal Legacy, an original portrait by Niki"/><figcaption>02</figcaption></figure>
+        <figure className="salon-low"><img src="/artworks/quiet-elegance.png" alt="Quiet Elegance, an original portrait by Niki"/><figcaption>03</figcaption></figure>
+        <span className="gold-orbit" />
+        <p className="salon-note">ONE OF ONE<br/>HAND PAINTED<br/>BY NIKI</p>
+      </div>
+      <p className="hero-index">VANCOUVER · CANADA<br/>PRIVATE COLLECTION</p>
+      <span className="hero-scroll">SCROLL TO UNFOLD <i/></span>
     </section>
 
     <div className="stories">
-      {stories.map((s, i) => <section className={`story ${i % 2 ? "reverse" : ""}`} key={s.no}>
+      {stories.map((s, i) => <section className={`story ${i % 2 ? "reverse" : ""}`} id={`story-${s.no}`} key={s.no}>
         <div className="story-image"><img src={s.image} alt={`${s.title}, original painting by Niki`} /><span>{s.no} / 04</span><i /></div>
         <div className="story-copy"><span className="eyebrow">PORTRAIT {s.no} · ORIGINAL ON CANVAS</span><h2>{s.title}</h2><h3>{s.kicker}</h3><p>{s.body}</p><Link href={`/acquire#work-${s.no}`}>Discover the work <b>↗</b></Link></div>
       </section>)}
