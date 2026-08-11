@@ -4,10 +4,10 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const stories = [
-  { no: "01", title: "Golden Poise", kicker: "Grace is not quiet. It is composed.", body: "A portrait of softness carried as strength—heritage held close, each leaf of gold catching the light like a memory passed from one woman to the next.", cls: "art-hijab" },
-  { no: "02", title: "Bridal Legacy", kicker: "A ceremony of becoming.", body: "Crimson, gold and the stillness before a new chapter. This work honours the rituals that make a bride feel connected to every woman who stood before her.", cls: "art-bride" },
-  { no: "03", title: "Quiet Elegance", kicker: "Presence needs no announcement.", body: "A study in restraint—the language of a lowered gaze, an unfurled fan and ornaments painted one deliberate glint at a time.", cls: "art-fan" },
-  { no: "04", title: "Crown Within", kicker: "Adornment begins from within.", body: "Braids rise like architecture. The portrait celebrates beauty not as decoration, but as lineage, protection and self-possession.", cls: "art-braids" },
+  { no: "01", title: "Golden Poise", kicker: "Grace is not quiet. It is composed.", body: "A portrait of softness carried as strength—heritage held close, each leaf of gold catching the light like a memory passed from one woman to the next.", image: "/artworks/golden-poise.png" },
+  { no: "02", title: "Bridal Legacy", kicker: "A ceremony of becoming.", body: "Crimson, gold and the stillness before a new chapter. This work honours the rituals that make a bride feel connected to every woman who stood before her.", image: "/artworks/bridal-legacy.png" },
+  { no: "03", title: "Quiet Elegance", kicker: "Presence needs no announcement.", body: "A study in restraint—the language of a lowered gaze, an unfurled fan and ornaments painted one deliberate glint at a time.", image: "/artworks/quiet-elegance.png" },
+  { no: "04", title: "Crown Within", kicker: "Adornment begins from within.", body: "Braids rise like architecture. The portrait celebrates beauty not as decoration, but as lineage, protection and self-possession.", image: "/artworks/crown-within.png" },
 ];
 
 function Mark() {
@@ -43,17 +43,18 @@ export default function Home() {
       <span>Scroll to enter</span>
       <div><p>THE PORTRAIT SERIES · I</p><h1>Before an artwork<br />is seen, it is <em>felt.</em></h1></div>
       <p className="intro-note">Four portraits. Four inner worlds.<br/>A collection shaped by culture, beauty and identity.</p>
+      <div className="intro-gallery" aria-label="Featured paintings"><img src="/artworks/golden-poise.png" alt="Golden Poise" /><img src="/artworks/bridal-legacy.png" alt="Bridal Legacy" /><img src="/artworks/quiet-elegance.png" alt="Quiet Elegance" /></div>
     </section>
 
     <div className="stories">
       {stories.map((s, i) => <section className={`story ${i % 2 ? "reverse" : ""}`} key={s.no}>
-        <div className={`story-image ${s.cls}`}><span>{s.no} / 04</span><i /></div>
+        <div className="story-image"><img src={s.image} alt={`${s.title}, original painting by Niki`} /><span>{s.no} / 04</span><i /></div>
         <div className="story-copy"><span className="eyebrow">PORTRAIT {s.no} · ORIGINAL ON CANVAS</span><h2>{s.title}</h2><h3>{s.kicker}</h3><p>{s.body}</p><Link href={`/acquire#work-${s.no}`}>Discover the work <b>↗</b></Link></div>
       </section>)}
     </div>
 
     <section className="landing-reveal" id="artist">
-      <div className="reveal-art" />
+      <div className="reveal-art"><img className="studio-photo" src="/rooms/golden-poise.png" alt="Golden Poise displayed in a calm interior" /><img className="floating-art floating-one" src="/artworks/bridal-legacy.png" alt="Bridal Legacy painting" /><img className="floating-art floating-two" src="/artworks/crown-within.png" alt="Crown Within painting" /><span>Inside the collector&apos;s home</span></div>
       <div className="reveal-copy"><span>THE WORLD OF NIKI</span><h2>Heritage,<br/><em>painted in gold.</em></h2><p>Painted Gold is a living archive of feminine identity. Niki’s portraits bring together cultural memory, ceremonial beauty and the quiet power of being entirely oneself.</p><div><Link href="/acquire">Enter the private gallery</Link><a href="mailto:studio@paintedgoldbyniki.com">Meet the artist</a></div></div>
     </section>
 

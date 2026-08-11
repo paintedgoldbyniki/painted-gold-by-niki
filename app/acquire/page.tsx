@@ -4,10 +4,10 @@ import Link from "next/link";
 import { useState } from "react";
 
 const works = [
-  { no:"01", title:"Golden Poise", size:"24 × 36 in", medium:"Acrylic & gold leaf on canvas", art:"art-hijab", room:"/rooms/golden-poise.png", status:"Available" },
-  { no:"02", title:"Bridal Legacy", size:"24 × 30 in", medium:"Acrylic & gold leaf on canvas", art:"art-bride", room:"/rooms/bridal-legacy.png", status:"Available" },
-  { no:"03", title:"Quiet Elegance", size:"20 × 24 in", medium:"Acrylic & gold leaf on canvas", art:"art-fan", room:"/rooms/quiet-elegance.png", status:"Private release" },
-  { no:"04", title:"Crown Within", size:"24 × 30 in", medium:"Acrylic & gold leaf on canvas", art:"art-braids", room:"/rooms/crown-within.png", status:"Available" },
+  { no:"01", title:"Golden Poise", size:"24 × 36 in", medium:"Acrylic & gold leaf on canvas", image:"/artworks/golden-poise.png", room:"/rooms/golden-poise.png", status:"Available" },
+  { no:"02", title:"Bridal Legacy", size:"24 × 30 in", medium:"Acrylic & gold leaf on canvas", image:"/artworks/bridal-legacy.png", room:"/rooms/bridal-legacy.png", status:"Available" },
+  { no:"03", title:"Quiet Elegance", size:"20 × 24 in", medium:"Acrylic & gold leaf on canvas", image:"/artworks/quiet-elegance.png", room:"/rooms/quiet-elegance.png", status:"Private release" },
+  { no:"04", title:"Crown Within", size:"24 × 30 in", medium:"Acrylic & gold leaf on canvas", image:"/artworks/crown-within.png", room:"/rooms/crown-within.png", status:"Available" },
 ];
 
 export default function Acquire(){
@@ -18,7 +18,7 @@ export default function Acquire(){
    <section className="work-grid">
     {works.map((w,i)=><article className="work" id={`work-${w.no}`} key={w.no}>
       <button className="work-visual" onClick={()=>setSelected(i)} aria-label={`View ${w.title}`}>
-       <div className={`original ${w.art}`} />
+       <img className="original" src={w.image} alt={`${w.title}, original painting by Niki`} />
        <img className="room" src={w.room} alt={`${w.title} shown in an interior`} />
        <span className="room-label">VIEW IN A ROOM</span><span className="work-no">{w.no} / 04</span>
       </button>
