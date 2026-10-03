@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Brand, SiteFooter, SiteNav } from "./site-components";
 
 const works = [
   { no:"01", title:"Golden Poise", chapter:"The art of composure", story:"Softness carried as strength—heritage held close, each leaf of gold catching light like a memory passed from one woman to the next.", image:"/artworks/golden-poise.png" },
@@ -15,24 +16,15 @@ const works = [
   { no:"09", title:"Untitled IX", chapter:"The collection continues", story:"A new original in the portrait series.", image:null },
 ];
 
-function Mark(){return <div className="brand compact-brand"><span>PAINTED GOLD</span><small>BY NIKI</small></div>}
-
 export default function Home(){
  const [entered,setEntered]=useState(false);
- const [menu,setMenu]=useState(false);
  useEffect(()=>{const t=setTimeout(()=>setEntered(true),1900);return()=>clearTimeout(t)},[]);
  return <main className="site-v2">
-  <div className={`loader compact-loader ${entered?"is-gone":""}`} aria-hidden={entered}><div className="loader-grain"/><Mark/><span>NINE STORIES · ONE COLLECTION</span></div>
-  <header className="site-nav">
-   <Link href="/" aria-label="Painted Gold home"><Mark/></Link>
-   <nav><a href="#collection">Collection</a><a href="#stories">Stories</a><a href="#artist">Artist</a><Link href="/acquire">Shop prints</Link></nav>
-   <button onClick={()=>setMenu(!menu)} aria-label="Toggle navigation"><span/><span/></button>
-   <Link className="nav-enquire" href="/acquire#originals">Originals</Link>
-  </header>
-  <div className={`mobile-nav ${menu?"open":""}`}><a href="#collection" onClick={()=>setMenu(false)}>Collection</a><a href="#stories" onClick={()=>setMenu(false)}>Stories</a><a href="#artist" onClick={()=>setMenu(false)}>Artist</a><Link href="/acquire">Shop prints</Link><Link href="/acquire#originals">Originals</Link></div>
+  <div className={`loader compact-loader ${entered?"is-gone":""}`} aria-hidden={entered}><div className="loader-grain"/><Brand/><span>NINE STORIES · ONE COLLECTION</span></div>
+  <SiteNav/>
 
   <section className="editorial-hero">
-   <div className="hero-copy-small"><span>THE PORTRAIT COLLECTION · 2026</span><h1>Painted stories<br/>of <em>identity.</em></h1><p>Nine portraits shaped by heritage, ceremony and the quiet details through which a woman carries home.</p><div><a href="#collection">View the collection</a><Link href="/acquire">Collect a print</Link></div></div>
+   <div className="hero-copy-small"><span>THE PORTRAIT COLLECTION · 2026</span><h1>Painted stories<br/>of <em>identity.</em></h1><p>Nine portraits shaped by heritage, ceremony and the quiet details through which a woman carries home.</p><div><Link href="/collection">View the collection</Link><Link href="/acquire">Collect a print</Link></div></div>
    <div className="hero-collage"><figure className="hero-art-main"><img src="/artworks/golden-poise.png" alt="Golden Poise by Niki"/></figure><figure className="hero-art-side"><img src="/artworks/bridal-legacy.png" alt="Bridal Legacy by Niki"/></figure><span className="hero-stamp">01—09<br/>VANCOUVER</span></div>
   </section>
 
@@ -53,6 +45,6 @@ export default function Home(){
 
   <section className="studio-banner" id="artist"><div className="studio-visual"><img src="/rooms/golden-poise.png" alt="Golden Poise presented in an interior"/><button aria-label="Studio film placeholder">Studio film<br/><span>Coming soon</span></button></div><div className="studio-copy"><span>PAINTED BY NIKI</span><h2>A practice rooted<br/>in memory.</h2><p>Niki creates portraits that hold cultural detail with intimacy. Gold, fabric, jewellery and gesture become a visual language for identity, inheritance and self-possession.</p><p className="future-note">This section is ready for future studio photography and process films.</p><a href="mailto:studio@paintedgoldbyniki.com">Contact the studio</a></div></section>
   <section className="shop-strip"><div><span>FINE-ART EDITIONS</span><h2>Bring the story home.</h2></div><p>Purchase museum-quality prints online, or arrange a private viewing for a one-of-one original canvas.</p><div><Link href="/acquire">Shop prints</Link><Link href="/acquire#originals">View originals</Link></div></section>
-  <footer className="site-footer"><Mark/><nav><a href="#collection">Collection</a><a href="#artist">Artist</a><Link href="/acquire">Collect</Link></nav><p>© 2026 Painted Gold by Niki</p></footer>
+  <SiteFooter/>
  </main>
 }

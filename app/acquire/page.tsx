@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { SiteNav } from "../site-components";
 
 const works = [
  {no:"01",title:"Golden Poise",image:"/artworks/golden-poise.png",room:"/rooms/golden-poise.png",size:"24 × 36 in"},
@@ -15,7 +16,7 @@ export default function Acquire(){
  const [mode,setMode]=useState<"print"|"original">("print"); const [selected,setSelected]=useState<number|null>(null);
  useEffect(()=>{if(location.hash==="#originals")setMode("original")},[]);
  return <main className="shop-v2">
-  <header className="site-nav dark-nav"><Link href="/"><div className="brand compact-brand"><span>PAINTED GOLD</span><small>BY NIKI</small></div></Link><nav><Link href="/">Home</Link><Link href="/#collection">Collection</Link><Link href="/#artist">Artist</Link></nav><Link className="nav-enquire" href="/">Back to stories</Link></header>
+  <SiteNav dark/>
   <section className="shop-hero"><span>THE COLLECTOR&apos;S EDIT</span><h1>Choose how you<br/>live with the art.</h1><p>Fine-art editions can be purchased online. Every original canvas is one of one and acquired privately.</p></section>
   <div className="shop-tabs" id="originals"><button className={mode==="print"?"active":""} onClick={()=>setMode("print")}>Print editions <span>Buy online</span></button><button className={mode==="original"?"active":""} onClick={()=>setMode("original")}>Original canvases <span>Private enquiry</span></button></div>
   <section className="shop-intro"><span>{mode==="print"?"FINE-ART EDITIONS":"ONE OF ONE"}</span><h2>{mode==="print"?"Prints for considered spaces.":"The original, and only one."}</h2><p>{mode==="print"?"Archival pigment prints in a choice of sizes. Online checkout will be activated when the final edition details and prices are confirmed.":"Contact the studio or arrange an in-person visit to view texture, scale and gold details before collecting."}</p></section>
