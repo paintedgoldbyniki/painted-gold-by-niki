@@ -19,10 +19,15 @@ const portraitSizes: PrintVariant[] = [
 ];
 
 export const printCatalog: PrintArtwork[] = [
-  { id: "golden-poise", title: "Golden Poise", image: "/artworks/golden-poise.png", variants: portraitSizes },
-  { id: "bridal-legacy", title: "Bridal Legacy", image: "/artworks/bridal-legacy.png", variants: portraitSizes },
-  { id: "quiet-elegance", title: "Quiet Elegance", image: "/artworks/quiet-elegance.png", variants: portraitSizes },
-  { id: "crown-within", title: "Crown Within", image: "/artworks/crown-within.png", variants: portraitSizes },
+  { id: "her-grace", title: "Her Grace", image: "/artworks/her-grace.jpg", variants: portraitSizes },
+  { id: "her-legacy", title: "Her Legacy", image: "/artworks/her-legacy.jpg", variants: portraitSizes },
+  { id: "her-allure", title: "Her Allure", image: "/artworks/her-allure.jpg", variants: portraitSizes },
+  { id: "her-sovereignty", title: "Her Sovereignty", image: "/artworks/her-sovereignty.jpg", variants: portraitSizes },
+  { id: "her-roots", title: "Her Roots", image: "/artworks/her-roots.jpg", variants: portraitSizes },
+  { id: "her-spirit", title: "Her Spirit", image: "/artworks/her-spirit.jpg", variants: portraitSizes },
+  { id: "her-courage", title: "Her Courage", image: "/artworks/her-courage.jpg", variants: portraitSizes },
+  { id: "her-reverence", title: "Her Reverence", image: "/artworks/her-reverence.jpg", variants: portraitSizes },
+  { id: "her-unapologetic", title: "HER, Unapologetic", image: "/artworks/her-unapologetic.jpg", variants: portraitSizes },
 ];
 
 export function getPrintSelection(artworkId: string, variantId: string) {
