@@ -13,8 +13,8 @@ async function fulfill(session: Stripe.Checkout.Session) {
     return;
   }
   const collected = (session as Stripe.Checkout.Session & {
-    collected_information?: { shipping_details?: Stripe.Checkout.Session.ShippingDetails };
-    shipping_details?: Stripe.Checkout.Session.ShippingDetails;
+    collected_information?: { shipping_details?: { name?: string | null; address?: Stripe.Address | null } };
+    shipping_details?: { name?: string | null; address?: Stripe.Address | null };
   });
   const shipping = collected.collected_information?.shipping_details || collected.shipping_details;
   await submitProdigiOrder({
