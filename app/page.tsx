@@ -3,32 +3,56 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const stories = [
-  { no: "01", title: "Golden Poise", chapter: "The art of composure", kicker: "Grace is not quiet. It is composed.", body: "A portrait of softness carried as strength—heritage held close, each leaf of gold catching the light like a memory passed from one woman to the next.", detail: "The lowered gaze is not retreat. It is certainty: a private moment of knowing who you are before the world names you.", image: "/artworks/golden-poise.png", tone: "sand" },
-  { no: "02", title: "Bridal Legacy", chapter: "The ceremony of becoming", kicker: "Some rituals begin long before us.", body: "Crimson, gold and the stillness before a new chapter. This work honours the rituals that connect a bride to every woman who stood before her.", detail: "Jewellery becomes an archive. Colour becomes a blessing. The portrait holds the breath between the life that was and the life about to begin.", image: "/artworks/bridal-legacy.png", tone: "wine" },
-  { no: "03", title: "Quiet Elegance", chapter: "The language of restraint", kicker: "Presence needs no announcement.", body: "A study in restraint—the language of a lowered gaze, an unfurled fan and ornaments painted one deliberate glint at a time.", detail: "In the space between gesture and expression lives a quieter form of power: elegance that does not ask to be witnessed.", image: "/artworks/quiet-elegance.png", tone: "olive" },
-  { no: "04", title: "Crown Within", chapter: "The architecture of identity", kicker: "Adornment begins from within.", body: "Braids rise like architecture. The portrait celebrates beauty not as decoration, but as lineage, protection and self-possession.", detail: "What appears ornamental is also ancestral—a crown assembled from memory, patience and the right to define oneself.", image: "/artworks/crown-within.png", tone: "ink" },
+const works = [
+  { no:"01", title:"Golden Poise", chapter:"The art of composure", story:"Softness carried as strength—heritage held close, each leaf of gold catching light like a memory passed from one woman to the next.", image:"/artworks/golden-poise.png" },
+  { no:"02", title:"Bridal Legacy", chapter:"The ceremony of becoming", story:"Crimson, gold and the stillness before a new chapter. A portrait honouring the rituals that connect one woman to generations before her.", image:"/artworks/bridal-legacy.png" },
+  { no:"03", title:"Quiet Elegance", chapter:"The language of restraint", story:"Presence needs no announcement. An unfurled fan, a lowered gaze and ornaments painted one deliberate glint at a time.", image:"/artworks/quiet-elegance.png" },
+  { no:"04", title:"Crown Within", chapter:"The architecture of identity", story:"Braids rise like architecture—beauty not as decoration, but as lineage, protection and self-possession.", image:"/artworks/crown-within.png" },
+  { no:"05", title:"Untitled V", chapter:"The collection continues", story:"A new original in the portrait series.", image:null },
+  { no:"06", title:"Untitled VI", chapter:"The collection continues", story:"A new original in the portrait series.", image:null },
+  { no:"07", title:"Untitled VII", chapter:"The collection continues", story:"A new original in the portrait series.", image:null },
+  { no:"08", title:"Untitled VIII", chapter:"The collection continues", story:"A new original in the portrait series.", image:null },
+  { no:"09", title:"Untitled IX", chapter:"The collection continues", story:"A new original in the portrait series.", image:null },
 ];
 
-function Mark() { return <div className="brand"><span>PAINTED GOLD</span><small>BY NIKI</small></div>; }
+function Mark(){return <div className="brand compact-brand"><span>PAINTED GOLD</span><small>BY NIKI</small></div>}
 
-export default function Home() {
-  const [entered, setEntered] = useState(false);
-  const [menu, setMenu] = useState(false);
-  useEffect(() => { const t = setTimeout(() => setEntered(true), 2850); return () => clearTimeout(t); }, []);
-  return <main>
-    <div className={`loader ${entered ? "is-gone" : ""}`} aria-hidden={entered}><div className="loader-grain" /><p>A private collection of painted stories</p><div className="loader-mark"><i /><Mark /><i /></div><span className="loader-count">ENTERING THE COLLECTION</span></div>
-    <header className="nav"><button className="menu-btn" onClick={() => setMenu(true)} aria-label="Open menu"><span /><span /></button><Link href="/" aria-label="Painted Gold home"><Mark /></Link><Link className="nav-acquire" href="/acquire">Collect <sup>04</sup></Link></header>
-    <div className={`menu-drawer ${menu ? "open" : ""}`}><button onClick={() => setMenu(false)} aria-label="Close menu">Close ×</button><nav><Link href="#stories" onClick={() => setMenu(false)}>The stories</Link><Link href="#artist" onClick={() => setMenu(false)}>The artist</Link><Link href="/acquire">Print editions</Link><Link href="/acquire#originals">One-of-one originals</Link></nav><p>Painted slowly. Collected forever.</p></div>
+export default function Home(){
+ const [entered,setEntered]=useState(false);
+ const [menu,setMenu]=useState(false);
+ useEffect(()=>{const t=setTimeout(()=>setEntered(true),1900);return()=>clearTimeout(t)},[]);
+ return <main className="site-v2">
+  <div className={`loader compact-loader ${entered?"is-gone":""}`} aria-hidden={entered}><div className="loader-grain"/><Mark/><span>NINE STORIES · ONE COLLECTION</span></div>
+  <header className="site-nav">
+   <Link href="/" aria-label="Painted Gold home"><Mark/></Link>
+   <nav><a href="#collection">Collection</a><a href="#stories">Stories</a><a href="#artist">Artist</a><Link href="/acquire">Shop prints</Link></nav>
+   <button onClick={()=>setMenu(!menu)} aria-label="Toggle navigation"><span/><span/></button>
+   <Link className="nav-enquire" href="/acquire#originals">Originals</Link>
+  </header>
+  <div className={`mobile-nav ${menu?"open":""}`}><a href="#collection" onClick={()=>setMenu(false)}>Collection</a><a href="#stories" onClick={()=>setMenu(false)}>Stories</a><a href="#artist" onClick={()=>setMenu(false)}>Artist</a><Link href="/acquire">Shop prints</Link><Link href="/acquire#originals">Originals</Link></div>
 
-    <section className="home-hero" id="stories"><div className="hero-wash" /><p className="hero-edition">THE PORTRAIT SERIES · 2026</p><div className="hero-type"><span>PAINTED STORIES OF</span><h1>Culture<br/><em>in every</em><br/>detail.</h1><p>Original portraits exploring heritage, ceremony and the many ways a woman carries home within her.</p><a href="#story-01">Begin the exhibition <b>↓</b></a></div><div className="hero-salon" aria-label="Painted Gold portrait collection"><figure className="salon-main"><img src="/artworks/golden-poise.png" alt="Golden Poise, an original portrait by Niki"/><figcaption>01 · GOLDEN POISE</figcaption></figure><figure className="salon-top"><img src="/artworks/bridal-legacy.png" alt="Bridal Legacy, an original portrait by Niki"/><figcaption>02</figcaption></figure><figure className="salon-low"><img src="/artworks/quiet-elegance.png" alt="Quiet Elegance, an original portrait by Niki"/><figcaption>03</figcaption></figure><span className="gold-orbit" /><p className="salon-note">ONE OF ONE<br/>HAND PAINTED<br/>BY NIKI</p></div><p className="hero-index">VANCOUVER · CANADA<br/>PRIVATE COLLECTION</p><span className="hero-scroll">SCROLL TO UNFOLD <i/></span></section>
+  <section className="editorial-hero">
+   <div className="hero-copy-small"><span>THE PORTRAIT COLLECTION · 2026</span><h1>Painted stories<br/>of <em>identity.</em></h1><p>Nine portraits shaped by heritage, ceremony and the quiet details through which a woman carries home.</p><div><a href="#collection">View the collection</a><Link href="/acquire">Collect a print</Link></div></div>
+   <div className="hero-collage"><figure className="hero-art-main"><img src="/artworks/golden-poise.png" alt="Golden Poise by Niki"/></figure><figure className="hero-art-side"><img src="/artworks/bridal-legacy.png" alt="Bridal Legacy by Niki"/></figure><span className="hero-stamp">01—09<br/>VANCOUVER</span></div>
+  </section>
 
-    <section className="exhibition-threshold"><span>AN ONLINE EXHIBITION</span><p>Four women. Four inner worlds.<br/><em>Move slowly.</em></p><small>Each chapter reveals the memory held inside the portrait.</small></section>
-    <div className="stories">{stories.map((s, i) => <section className={`story story-premium ${i % 2 ? "reverse" : ""} tone-${s.tone}`} id={`story-${s.no}`} key={s.no}><div className="story-image"><img src={s.image} alt={`${s.title}, original painting by Niki`} /><span>{s.no} / 04</span><i /></div><div className="story-copy"><div className="chapter-line"><span>CHAPTER {s.no}</span><i /><span>{s.chapter}</span></div><h2>{s.title}</h2><h3>{s.kicker}</h3><p>{s.body}</p><blockquote>{s.detail}</blockquote><div className="story-actions"><Link href={`/acquire#work-${s.no}`}>Collect a print</Link><Link href="/acquire#originals">Enquire about the original</Link></div><span className="story-material">ACRYLIC &amp; GOLD LEAF · ORIGINAL CANVAS · ONE OF ONE</span></div></section>)}</div>
+  <section className="collection-section" id="collection">
+   <div className="section-heading"><div><span>THE COLLECTION</span><h2>Nine works.<br/>Nine inner worlds.</h2></div><p>Explore the current portrait series. Each original is painted once; selected works are also released as fine-art prints.</p></div>
+   <div className="collection-grid">{works.map((work,i)=><article className={`collection-card ${!work.image?"awaiting":""}`} key={work.no}>
+    {work.image?<a href={`#story-${work.no}`} className="card-image"><img src={work.image} alt={`${work.title}, painting by Niki`}/><span>Read the story</span></a>:<div className="card-image pending-art"><i>{work.no}</i><span>Artwork to be revealed</span></div>}
+    <div className="card-info"><span>{work.no}</span><div><h3>{work.title}</h3><p>{work.chapter}</p></div></div>
+   </article>)}</div>
+  </section>
 
-    <section className="media-future" aria-label="Future studio film and photography area"><div className="media-frame"><span>STUDIO FILM · COMING SOON</span><button aria-label="Future studio film placeholder">Play</button><p>A glimpse into the hands,<br/>rituals and hours behind each work.</p></div><div className="media-side"><span>FROM THE STUDIO</span><h2>The story continues<br/><em>beyond the canvas.</em></h2><p>This space is prepared for Niki&apos;s future process films, portrait photography and studio journals—added without changing the visual experience.</p></div></section>
-    <section className="landing-reveal" id="artist"><div className="reveal-art"><img className="studio-photo" src="/rooms/golden-poise.png" alt="Golden Poise displayed in a calm interior" /><img className="floating-art floating-one" src="/artworks/bridal-legacy.png" alt="Bridal Legacy painting" /><img className="floating-art floating-two" src="/artworks/crown-within.png" alt="Crown Within painting" /><span>Inside the collector&apos;s home</span></div><div className="reveal-copy"><span>THE WORLD OF NIKI</span><h2>Heritage,<br/><em>painted in gold.</em></h2><p>Painted Gold is a living archive of feminine identity. Niki’s portraits bring together cultural memory, ceremonial beauty and the quiet power of being entirely oneself.</p><div><Link href="/acquire">Shop print editions</Link><Link href="/acquire#originals">View one-of-one works</Link></div></div></section>
-    <section className="collect-paths"><div><span>01 · EDITION</span><h3>Fine-art prints</h3><p>Made for living with the story. Museum-quality editions will be available to purchase directly online.</p><Link href="/acquire">Explore print editions</Link></div><div><span>02 · ORIGINAL</span><h3>One of one</h3><p>Every original canvas exists only once. Acquisition is arranged privately or during a studio visit.</p><Link href="/acquire#originals">Request a private viewing</Link></div></section>
-    <footer><Mark/><p>Culture · beauty · identity</p><p>© 2026 Painted Gold by Niki</p></footer>
-  </main>;
+  <section className="story-section" id="stories">
+   <div className="section-heading story-heading"><div><span>BEHIND THE WORK</span><h2>Stories held<br/>inside the canvas.</h2></div><p>Four completed works from the developing nine-piece collection.</p></div>
+   <div className="story-list">{works.slice(0,4).map((work,i)=><article id={`story-${work.no}`} className="story-row" key={work.no}>
+    <div className="story-thumb"><img src={work.image!} alt={work.title}/></div><span className="story-number">{work.no}</span><div className="story-text"><span>{work.chapter}</span><h3>{work.title}</h3><p>{work.story}</p><div><Link href={`/acquire#work-${work.no}`}>Shop print</Link><Link href="/acquire#originals">View original</Link></div></div>
+   </article>)}</div>
+  </section>
+
+  <section className="studio-banner" id="artist"><div className="studio-visual"><img src="/rooms/golden-poise.png" alt="Golden Poise presented in an interior"/><button aria-label="Studio film placeholder">Studio film<br/><span>Coming soon</span></button></div><div className="studio-copy"><span>PAINTED BY NIKI</span><h2>A practice rooted<br/>in memory.</h2><p>Niki creates portraits that hold cultural detail with intimacy. Gold, fabric, jewellery and gesture become a visual language for identity, inheritance and self-possession.</p><p className="future-note">This section is ready for future studio photography and process films.</p><a href="mailto:studio@paintedgoldbyniki.com">Contact the studio</a></div></section>
+  <section className="shop-strip"><div><span>FINE-ART EDITIONS</span><h2>Bring the story home.</h2></div><p>Purchase museum-quality prints online, or arrange a private viewing for a one-of-one original canvas.</p><div><Link href="/acquire">Shop prints</Link><Link href="/acquire#originals">View originals</Link></div></section>
+  <footer className="site-footer"><Mark/><nav><a href="#collection">Collection</a><a href="#artist">Artist</a><Link href="/acquire">Collect</Link></nav><p>© 2026 Painted Gold by Niki</p></footer>
+ </main>
 }
