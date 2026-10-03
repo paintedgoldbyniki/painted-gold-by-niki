@@ -2,15 +2,10 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { herWorks } from "../her-data";
 import { SiteFooter, SiteNav } from "../site-components";
 
-const works = [
- {no:"01",title:"Golden Poise",image:"/artworks/golden-poise.png",room:"/rooms/golden-poise.png",size:"24 × 36 in"},
- {no:"02",title:"Bridal Legacy",image:"/artworks/bridal-legacy.png",room:"/rooms/bridal-legacy.png",size:"24 × 30 in"},
- {no:"03",title:"Quiet Elegance",image:"/artworks/quiet-elegance.png",room:"/rooms/quiet-elegance.png",size:"20 × 24 in"},
- {no:"04",title:"Crown Within",image:"/artworks/crown-within.png",room:"/rooms/crown-within.png",size:"24 × 30 in"},
- {no:"05",title:"Untitled V",image:null,room:null,size:"To be announced"},{no:"06",title:"Untitled VI",image:null,room:null,size:"To be announced"},{no:"07",title:"Untitled VII",image:null,room:null,size:"To be announced"},{no:"08",title:"Untitled VIII",image:null,room:null,size:"To be announced"},{no:"09",title:"Untitled IX",image:null,room:null,size:"To be announced"},
-];
+const works = herWorks.map(work=>({...work,room:null,size:"Original · one of one"}));
 
 export default function Acquire(){
  const [mode,setMode]=useState<"print"|"original">("print"); const [selected,setSelected]=useState<number|null>(null);
@@ -19,15 +14,15 @@ export default function Acquire(){
  const sizes=[{id:"small",label:"12 × 16 in",price:"$95"},{id:"medium",label:"18 × 24 in",price:"$165"},{id:"large",label:"24 × 32 in",price:"$245"}];
  async function beginCheckout(){
   if(selected===null)return; setOrdering(true); setCheckoutError("");
-  try{const response=await fetch("/api/checkout",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({artworkId:works[selected].title.toLowerCase().replaceAll(" ","-"),variantId:variant,quantity:1})}); const data=await response.json(); if(!response.ok||!data.url)throw new Error(data.error||"Checkout is unavailable."); window.location.href=data.url;}
+  try{const response=await fetch("/api/checkout",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({artworkId:works[selected].slug,variantId:variant,quantity:1})}); const data=await response.json(); if(!response.ok||!data.url)throw new Error(data.error||"Checkout is unavailable."); window.location.href=data.url;}
   catch(error){setCheckoutError(error instanceof Error?error.message:"Checkout is unavailable.");setOrdering(false)}
  }
  return <main className="shop-v2">
   <SiteNav dark/>
-  <section className="shop-hero"><span>THE COLLECTOR&apos;S EDIT</span><h1>Choose how you<br/>live with the art.</h1><p>Fine-art editions can be purchased online. Every original canvas is one of one and acquired privately.</p></section>
+  <section className="shop-hero"><span>COLLECT H E R</span><h1>Choose the power<br/>you live with.</h1><p>Nine museum-quality fine-art editions. Nine one-of-one original canvases. Each carries a different story of womanhood.</p></section>
   <div className="shop-tabs" id="originals"><button className={mode==="print"?"active":""} onClick={()=>setMode("print")}>Print editions <span>Buy online</span></button><button className={mode==="original"?"active":""} onClick={()=>setMode("original")}>Original canvases <span>Private enquiry</span></button></div>
-  <section className="shop-intro"><span>{mode==="print"?"FINE-ART EDITIONS":"ONE OF ONE"}</span><h2>{mode==="print"?"Prints for considered spaces.":"The original, and only one."}</h2><p>{mode==="print"?"Archival pigment prints in a choice of sizes. Online checkout will be activated when the final edition details and prices are confirmed.":"Contact the studio or arrange an in-person visit to view texture, scale and gold details before collecting."}</p></section>
-  <section className="shop-grid">{works.map((w,i)=><article id={`work-${w.no}`} className={!w.image?"shop-coming":""} key={w.no}>{w.image?<button className="shop-image" onClick={()=>setSelected(i)}><img src={w.image} alt={w.title}/>{w.room&&<img className="shop-room" src={w.room} alt={`${w.title} in a room`}/>}<span>View in a room</span></button>:<div className="shop-image pending-art"><i>{w.no}</i><span>Coming to the collection</span></div>}<div className="shop-meta"><span>{w.no}</span><div><h3>{w.title}</h3><p>{mode==="print"?"Fine-art print edition":w.size}</p></div>{w.image&&<button onClick={()=>setSelected(i)}>{mode==="print"?"Select print":"Enquire"}</button>}</div></article>)}</section>
+  <section className="shop-intro"><span>{mode==="print"?"THE NINE EDITIONS":"THE NINE ORIGINALS"}</span><h2>{mode==="print"?"A story of HER, for your space.":"One painting. One collector."}</h2><p>{mode==="print"?"Choose from all nine portraits in three considered sizes. Every archival fine-art print is produced to order.":"Contact the studio or arrange an in-person visit to experience the texture, scale and gold detail before collecting."}</p></section>
+  <section className="shop-grid">{works.map((w,i)=><article id={`work-${w.no}`} key={w.no}><button className="shop-image" onClick={()=>setSelected(i)}><img src={w.image} alt={w.title}/><span>View details</span></button><div className="shop-meta"><span>{w.no}</span><div><h3>{w.title}</h3><p>{mode==="print"?"Fine-art print edition":w.size}</p></div><button onClick={()=>setSelected(i)}>{mode==="print"?"Select print":"Enquire"}</button></div></article>)}</section>
   <section className="shop-assurance"><div><b>ARCHIVAL QUALITY</b><span>Made to preserve colour and detail</span></div><div><b>PRINTED TO ORDER</b><span>Produced individually for your space</span></div><div><b>SECURE CHECKOUT</b><span>Protected payment through Stripe</span></div></section>
   <section className="visit-panel"><span>ONE-OF-ONE ORIGINALS</span><h2>See the work<br/>in person.</h2><p>Original canvases are available through a personal conversation with the studio or an arranged visit.</p><a href="mailto:studio@paintedgoldbyniki.com?subject=Studio viewing">Arrange a studio viewing</a></section>
   <section className="shop-guide"><span>BEFORE YOU COLLECT</span><h2>Made with intention.<br/>Chosen with confidence.</h2><div><article><h3>What arrives?</h3><p>Your selected fine-art print, professionally produced and carefully packaged for delivery. Framing is not currently included.</p></article><article><h3>How long does it take?</h3><p>Every print is made to order. Production and delivery estimates are shown during checkout and confirmed by email.</p></article><article><h3>What about originals?</h3><p>Original canvases are placed privately. Contact the studio for availability, pricing and viewing arrangements.</p></article></div></section>
