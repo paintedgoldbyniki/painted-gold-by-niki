@@ -2,32 +2,56 @@ import Link from "next/link";
 import { SiteFooter, SiteNav } from "./site-components";
 
 const works = [
-  { no: "01", title: "Golden Poise", note: "The art of composure", image: "/artworks/golden-poise.png" },
-  { no: "02", title: "Bridal Legacy", note: "The ceremony of becoming", image: "/artworks/bridal-legacy.png" },
-  { no: "03", title: "Quiet Elegance", note: "The language of restraint", image: "/artworks/quiet-elegance.png" },
-  { no: "04", title: "Crown Within", note: "The architecture of identity", image: "/artworks/crown-within.png" },
-  { no: "05", title: "Chapter V", note: "To be revealed", image: null },
-  { no: "06", title: "Chapter VI", note: "To be revealed", image: null },
-  { no: "07", title: "Chapter VII", note: "To be revealed", image: null },
-  { no: "08", title: "Chapter VIII", note: "To be revealed", image: null },
-  { no: "09", title: "Chapter IX", note: "To be revealed", image: null },
+ {no:"01",title:"Golden Poise",line:"Softness carried as strength.",image:"/artworks/golden-poise.png",price:"From $95"},
+ {no:"02",title:"Bridal Legacy",line:"The ceremony of becoming.",image:"/artworks/bridal-legacy.png",price:"From $95"},
+ {no:"03",title:"Quiet Elegance",line:"Presence needs no announcement.",image:"/artworks/quiet-elegance.png",price:"From $95"},
+ {no:"04",title:"Crown Within",line:"Lineage worn like a crown.",image:"/artworks/crown-within.png",price:"From $95"},
 ];
 
-export default function Home() {
-  return <main className="new-home">
-    <SiteNav />
-    <section className="new-hero">
-      <div className="new-hero-copy"><p className="new-kicker">THE PORTRAIT COLLECTION · 2026</p><h1>Portraits that<br/>carry <em>home.</em></h1><p className="new-intro">An evolving collection of nine original paintings by Niki—rooted in memory, heritage and the quiet language of adornment.</p><div className="new-actions"><Link className="new-primary" href="/collection">Explore the collection</Link><Link className="new-text-link" href="/acquire">Shop fine-art prints</Link></div></div>
-      <div className="new-hero-art"><figure className="new-main-frame"><img src="/artworks/golden-poise.png" alt="Golden Poise, an original portrait by Niki"/><figcaption><span>01</span><b>Golden Poise</b><small>Original painting · selected print edition</small></figcaption></figure><div className="new-hero-index"><span>01</span><i/><span>09</span></div></div>
-    </section>
-    <section className="new-proof" aria-label="Collection details"><p><span>09</span> works in the collection</p><p><span>01/01</span> every original canvas</p><p><span>Vancouver</span> studio and private viewings</p></section>
-    <section className="new-collection">
-      <header className="new-section-head"><div><p className="new-kicker">CURRENT COLLECTION</p><h2>Nine stories,<br/>painted one at a time.</h2></div><div><p>Four works are currently revealed. Each original exists only once; selected paintings are offered as archival fine-art prints.</p><Link className="new-text-link" href="/collection">View all works</Link></div></header>
-      <div className="new-work-grid">{works.map(work=><article className={`new-work ${work.image?"is-live":"is-coming"}`} key={work.no}>{work.image?<Link className="new-work-image" href={`/stories#story-${work.no}`}><img src={work.image} alt={`${work.title}, painting by Niki`}/><span>Read its story</span></Link>:<div className="new-work-image new-placeholder"><span>{work.no}</span><small>COMING SOON</small></div>}<div className="new-work-meta"><span>{work.no}</span><div><h3>{work.title}</h3><p>{work.note}</p></div></div></article>)}</div>
-    </section>
-    <section className="new-feature-story"><div className="new-feature-image"><img src="/artworks/bridal-legacy.png" alt="Bridal Legacy by Niki"/><span>02 · BRIDAL LEGACY</span></div><div className="new-feature-copy"><p className="new-kicker">STORY FROM THE CANVAS</p><blockquote>“Crimson, gold and the stillness before a new chapter.”</blockquote><p>A portrait honouring the rituals that connect one woman to the generations before her. Every detail is painted as an act of remembrance.</p><Link className="new-text-link light" href="/stories#story-02">Read the full story</Link></div></section>
-    <section className="new-artist"><div className="new-artist-copy"><p className="new-kicker">THE ARTIST</p><h2>Painted by Niki.</h2><p>Niki’s portraits hold cultural detail with intimacy. Gold, fabric, jewellery and gesture become a visual language for identity, inheritance and self-possession.</p><Link className="new-text-link" href="/artist">Meet the artist</Link></div><figure><img src="/rooms/golden-poise.png" alt="Golden Poise displayed in an interior"/><figcaption>IN THE HOME · GOLDEN POISE</figcaption></figure></section>
-    <section className="new-collect"><div><p className="new-kicker">COLLECT THE WORK</p><h2>Original presence.<br/>Made personal.</h2></div><p>Choose a museum-quality print online, or contact the studio to arrange a private viewing of an original one-of-one canvas.</p><div className="new-collect-actions"><Link className="new-primary dark" href="/acquire">Shop prints</Link><Link className="new-text-link" href="/acquire#originals">Enquire about originals</Link></div></section>
-    <SiteFooter />
-  </main>;
+export default function Home(){
+ return <main className="cinema-home">
+  <SiteNav dark/>
+  <section className="cinema-hero">
+   <img className="cinema-hero-bg" src="/artworks/golden-poise.png" alt="Golden Poise by Niki"/>
+   <div className="cinema-shade"/>
+   <div className="cinema-hero-copy">
+    <p>THE PORTRAIT COLLECTION · 2026</p>
+    <h1>Wear your story.<br/><em>Own the feeling.</em></h1>
+    <span>Portraits of heritage, power and becoming—painted once as originals, released selectively as fine-art prints.</span>
+    <div><Link href="/acquire" className="cinema-gold-btn">Shop the collection</Link><Link href="/stories" className="cinema-ghost-link">Discover the stories</Link></div>
+   </div>
+   <div className="cinema-hero-note"><span>01 / 09</span><b>GOLDEN POISE</b><small>ORIGINAL · PRINT EDITION AVAILABLE</small></div>
+   <div className="cinema-scroll">SCROLL TO ENTER <i/></div>
+  </section>
+
+  <section className="cinema-manifesto">
+   <span>PAINTED GOLD BY NIKI</span>
+   <p>Not decoration.<br/><em>A piece of who you are.</em></p>
+   <small>Nine portraits shaped by ceremony, memory and the details through which a woman carries home.</small>
+  </section>
+
+  <section className="cinema-featured">
+   <header><div><span>THE FIRST REVEAL</span><h2>Four stories.<br/>Made to stay with you.</h2></div><p>Meet the first works from the nine-piece collection. Each is available as a museum-quality print; every original canvas remains one of one.</p></header>
+   <div className="cinema-work-grid">{works.map((w,i)=><article className="cinema-work" key={w.no}>
+    <Link href={`/acquire#work-${w.no}`} className="cinema-work-art"><img src={w.image} alt={`${w.title} by Niki`}/><span>VIEW PRINT</span></Link>
+    <div className="cinema-work-info"><span>{w.no}</span><div><h3>{w.title}</h3><p>{w.line}</p></div><strong>{w.price}</strong></div>
+   </article>)}</div>
+   <Link href="/acquire" className="cinema-all">SHOP ALL AVAILABLE PRINTS <span>04 RELEASED</span></Link>
+  </section>
+
+  <section className="cinema-room">
+   <div className="cinema-room-image"><img src="/rooms/quiet-elegance.png" alt="Quiet Elegance fine-art print shown in a room"/><span>IN YOUR SPACE</span></div>
+   <div className="cinema-room-copy"><span>ART THAT LIVES WITH YOU</span><h2>From canvas<br/>to your walls.</h2><p>Archival fine-art prints preserve the depth, detail and gold-toned character of the original work—made for the rooms where your own story unfolds.</p><ul><li>Museum-quality print finish</li><li>Three considered sizes</li><li>Printed and delivered to order</li></ul><Link href="/acquire" className="cinema-gold-btn dark">Choose your print</Link></div>
+  </section>
+
+  <section className="cinema-story">
+   <div className="cinema-story-copy"><span>STORY 02 · BRIDAL LEGACY</span><blockquote>“The stillness before<br/>a new chapter.”</blockquote><p>Crimson, gold and inherited ritual. A portrait of the moment a woman steps forward while carrying generations with her.</p><div><Link href="/stories#story-02">Read her story</Link><Link href="/acquire#work-02">Collect the print</Link></div></div>
+   <img src="/artworks/bridal-legacy.png" alt="Bridal Legacy by Niki"/>
+  </section>
+
+  <section className="cinema-original">
+   <p>ONE CANVAS. ONE COLLECTOR.</p><h2>The original<br/>can only belong to one.</h2><span>Original paintings are privately placed. Contact the studio to ask about availability or arrange a viewing.</span><Link href="/acquire#originals">Enquire about an original</Link>
+  </section>
+  <SiteFooter/>
+ </main>
 }
