@@ -173,3 +173,71 @@
  .collection-intro{grid-template-columns:1fr;padding:85px 24px}.collection-intro h2{font-size:54px}.collection-intro p{grid-column:1}
  .inquiry{display:block;padding:24px;overflow:auto}.inq-art{height:42vh;margin-top:45px}.inq-content{padding:45px 0}.print-options{grid-template-columns:1fr}.original-actions{flex-direction:column;align-items:flex-start}
 }
+
+
+/* Cinematic HER collection — nine artwork chapters */
+.collection-cinema{background:#11130e;color:#eee8dd;overflow:hidden}
+.collection-cinema .site-nav{position:absolute;inset:0 0 auto;z-index:20;background:linear-gradient(#10120ded,transparent);border:0}
+.collection-film-hero{height:100svh;min-height:720px;position:relative;display:flex;align-items:flex-end;padding:8vh 7vw;overflow:hidden}
+.collection-film-hero>img{object-fit:cover;object-position:center 34%}
+.collection-film-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,10,7,.94) 0%,rgba(9,10,7,.64) 43%,rgba(9,10,7,.04) 76%),linear-gradient(0deg,rgba(8,9,6,.78),transparent 45%)}
+.collection-film-intro{position:relative;z-index:2;max-width:750px}
+.collection-film-intro>span,.collection-prologue>span,.collection-gold-epilogue>span{font-size:9px;letter-spacing:.42em;color:#d0aa5e}
+.collection-film-intro h1{font:400 clamp(110px,18vw,280px)/.72 Georgia,serif;letter-spacing:-.065em;margin:55px 0 42px}
+.collection-film-intro p{font:400 clamp(18px,1.7vw,27px)/1.55 Georgia,serif;max-width:620px;color:#d6d1c7}
+.collection-film-intro a{display:inline-block;margin-top:35px;padding-bottom:11px;border-bottom:1px solid #caa55d;text-transform:uppercase;font-size:9px;letter-spacing:.26em}
+.collection-film-index{position:absolute;z-index:2;right:6vw;bottom:7vh;display:flex;align-items:end;gap:18px}
+.collection-film-index b{font:400 68px/.8 Georgia,serif;color:#d0aa5e}
+.collection-film-index span{font-size:8px;line-height:1.7;letter-spacing:.24em;color:#cbc6bb}
+.collection-prologue{min-height:88vh;padding:13vh 8vw;display:grid;grid-template-columns:.45fr 1.55fr;gap:8vw;align-items:start;background:#e8dfd2;color:#191a15}
+.collection-prologue>span{padding-top:18px;color:#8e6a2e}
+.collection-prologue h2{font:400 clamp(70px,9vw,145px)/.84 Georgia,serif;letter-spacing:-.045em;margin:0 0 65px}
+.collection-prologue p{font-size:16px;line-height:1.9;max-width:680px;color:#5b574f}
+.collection-prologue blockquote{font:italic 400 clamp(24px,2.5vw,39px)/1.45 Georgia,serif;max-width:850px;margin:65px 0 0;padding-left:35px;border-left:1px solid #a27a34;color:#2e2b26}
+.collection-chapter-nav{min-height:100px;display:grid;grid-template-columns:repeat(9,1fr);position:sticky;top:0;z-index:15;background:rgba(16,18,13,.94);backdrop-filter:blur(15px);border-block:1px solid rgba(255,255,255,.12)}
+.collection-chapter-nav a{display:flex;flex-direction:column;justify-content:center;gap:10px;padding:20px;text-transform:uppercase;font-size:7px;letter-spacing:.18em;color:#a8a79d;border-right:1px solid rgba(255,255,255,.1);transition:background .3s,color .3s}
+.collection-chapter-nav a:hover{background:#c3a05a;color:#12130e}.collection-chapter-nav span{color:#cba85f}
+.collection-chapter{min-height:112vh;display:grid;grid-template-columns:56% 44%;scroll-margin-top:100px}
+.collection-chapter.chapter-reverse{grid-template-columns:44% 56%}
+.chapter-reverse .chapter-artwork{order:2}
+.chapter-artwork{min-height:112vh;position:relative;overflow:hidden;background:#28291f}
+.chapter-artwork>img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.collection-chapter:hover .chapter-artwork>img{transform:scale(1.018)}
+.chapter-artwork:after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);pointer-events:none}
+.chapter-frame-number,.chapter-frame-label{position:absolute;z-index:2;top:30px;font-size:8px;letter-spacing:.25em;color:white;text-shadow:0 1px 16px #000}
+.chapter-frame-number{left:30px}.chapter-frame-label{right:30px}
+.chapter-narrative{min-height:112vh;padding:9vh 6vw;display:flex;justify-content:center;flex-direction:column;position:relative;overflow:hidden}
+.chapter-tone-0 .chapter-narrative{background:#e5dacb;color:#181914}
+.chapter-tone-1 .chapter-narrative{background:#302027;color:#f0e8dd}
+.chapter-tone-2 .chapter-narrative{background:#25291b;color:#f0e9de}
+.chapter-tone-3 .chapter-narrative{background:#d9c9b4;color:#191a14}
+.chapter-kicker{display:flex;align-items:center;gap:14px;font-size:8px;letter-spacing:.29em;text-transform:uppercase;color:#a17b38}
+.chapter-kicker i{height:1px;width:48px;background:currentColor}
+.chapter-tone-1 .chapter-kicker,.chapter-tone-2 .chapter-kicker{color:#d0ad64}
+.chapter-power{margin-top:8vh;font-size:8px;letter-spacing:.5em;text-transform:uppercase;color:#a27d3b}
+.chapter-narrative h2{font:400 clamp(58px,6.6vw,105px)/.88 Georgia,serif;letter-spacing:-.045em;margin:28px 0 36px;position:relative;z-index:2}
+.chapter-narrative blockquote{font:italic 400 clamp(19px,1.7vw,28px)/1.5 Georgia,serif;margin:0 0 36px;max-width:520px;color:inherit;position:relative;z-index:2}
+.chapter-narrative>p{font-size:14px;line-height:1.9;max-width:560px;color:#5b574f;position:relative;z-index:2}
+.chapter-tone-1 .chapter-narrative>p,.chapter-tone-2 .chapter-narrative>p{color:#c5c0b7}
+.chapter-actions{display:flex;flex-wrap:wrap;gap:28px;margin-top:45px;position:relative;z-index:2}
+.chapter-actions a{text-transform:uppercase;font-size:8px;letter-spacing:.22em;padding-bottom:10px;border-bottom:1px solid #a98340}
+.chapter-watermark{position:absolute;right:-.06em;bottom:-.25em;font:400 38vw/.8 Georgia,serif;color:rgba(84,65,35,.05);pointer-events:none}
+.chapter-tone-1 .chapter-watermark,.chapter-tone-2 .chapter-watermark{color:rgba(255,255,255,.035)}
+.collection-gold-epilogue{min-height:90vh;padding:12vh 7vw;text-align:center;display:flex;align-items:center;justify-content:center;flex-direction:column;background:radial-gradient(circle at center,rgba(187,145,66,.14),transparent 40%),#11130e}
+.collection-gold-epilogue h2{font:400 clamp(68px,9vw,140px)/.88 Georgia,serif;letter-spacing:-.05em;margin:45px 0}
+.collection-gold-epilogue p{font:italic 400 22px/1.6 Georgia,serif;color:#bdb8ae;max-width:620px}
+.collection-gold-epilogue>div{display:flex;gap:45px;margin-top:45px}
+.collection-gold-epilogue a{text-transform:uppercase;font-size:9px;letter-spacing:.23em;padding-bottom:11px;border-bottom:1px solid #c49f57}
+.collection-cinema .site-footer{border-top:1px solid rgba(255,255,255,.12)}
+
+@media(max-width:850px){
+ .collection-film-hero{min-height:760px;padding:120px 24px 70px}.collection-film-hero>img{object-position:59% center}.collection-film-shade{background:linear-gradient(0deg,rgba(8,9,6,.96),rgba(8,9,6,.2) 80%)}
+ .collection-film-intro h1{font-size:112px;margin:40px 0}.collection-film-index{display:none}
+ .collection-prologue{grid-template-columns:1fr;padding:90px 24px;gap:38px}.collection-prologue h2{font-size:64px;margin-bottom:45px}.collection-prologue p{font-size:15px}.collection-prologue blockquote{font-size:25px;margin-top:45px;padding-left:22px}
+ .collection-chapter-nav{display:flex;overflow-x:auto;min-height:82px}.collection-chapter-nav a{min-width:105px;padding:16px}
+ .collection-chapter,.collection-chapter.chapter-reverse{grid-template-columns:1fr;min-height:0;scroll-margin-top:82px}.chapter-reverse .chapter-artwork{order:0}
+ .chapter-artwork{min-height:0;height:76vh}.chapter-frame-label{display:none}
+ .chapter-narrative{min-height:84vh;padding:72px 25px 95px}.chapter-power{margin-top:55px}.chapter-narrative h2{font-size:59px}.chapter-narrative blockquote{font-size:21px}.chapter-narrative>p{font-size:14px}
+ .chapter-actions{flex-direction:column;align-items:flex-start}.chapter-watermark{font-size:80vw}
+ .collection-gold-epilogue{padding:95px 24px}.collection-gold-epilogue h2{font-size:61px}.collection-gold-epilogue>div{flex-direction:column;gap:28px}
+}
