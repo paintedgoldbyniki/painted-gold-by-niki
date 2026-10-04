@@ -241,3 +241,53 @@
  .chapter-actions{flex-direction:column;align-items:flex-start}.chapter-watermark{font-size:80vw}
  .collection-gold-epilogue{padding:95px 24px}.collection-gold-epilogue h2{font-size:61px}.collection-gold-epilogue>div{flex-direction:column;gap:28px}
 }
+
+
+/* Collection scale refinement — compact editorial gallery */
+.collection-film-hero{height:78svh;min-height:590px;padding:7vh 6vw}
+.collection-film-intro{max-width:620px}
+.collection-film-intro h1{font-size:clamp(78px,11vw,170px);margin:36px 0 28px}
+.collection-film-intro p{font-size:clamp(16px,1.3vw,21px);max-width:540px}
+.collection-film-intro a{margin-top:25px}
+.collection-film-index b{font-size:50px}
+.collection-prologue{min-height:68vh;padding:9vh 8vw;gap:6vw}
+.collection-prologue h2{font-size:clamp(52px,6.4vw,96px);margin-bottom:42px}
+.collection-prologue p{font-size:15px;line-height:1.75;max-width:650px}
+.collection-prologue blockquote{font-size:clamp(20px,1.8vw,29px);margin-top:42px;max-width:720px}
+.collection-chapter-nav{min-height:72px}
+.collection-chapter-nav a{padding:14px 12px;gap:7px}
+.collection-chapter,.collection-chapter.chapter-reverse{min-height:88vh;grid-template-columns:52% 48%}
+.collection-chapter.chapter-reverse{grid-template-columns:48% 52%}
+.chapter-artwork{min-height:88vh}
+.chapter-narrative{min-height:88vh;padding:7vh 5vw}
+.chapter-power{margin-top:5vh}
+.chapter-narrative h2{font-size:clamp(45px,4.7vw,74px);margin:20px 0 25px}
+.chapter-narrative blockquote{font-size:clamp(17px,1.25vw,21px);margin-bottom:25px}
+.chapter-narrative>p{font-size:13px;line-height:1.75;max-width:510px}
+.chapter-actions{margin-top:32px;gap:22px}
+.chapter-watermark{font-size:27vw}
+.collection-gold-epilogue{min-height:70vh;padding:9vh 7vw}
+.collection-gold-epilogue h2{font-size:clamp(54px,6.6vw,98px);margin:32px 0}
+.collection-gold-epilogue p{font-size:19px}
+.collection-gold-epilogue>div{margin-top:32px}
+
+@media(max-width:850px){
+ .collection-film-hero{height:72svh;min-height:610px;padding:105px 22px 55px}
+ .collection-film-intro h1{font-size:82px;margin:28px 0 24px}
+ .collection-film-intro p{font-size:16px;line-height:1.5}
+ .collection-prologue{min-height:0;padding:68px 22px;gap:28px}
+ .collection-prologue h2{font-size:48px;margin-bottom:30px}
+ .collection-prologue p{font-size:14px;line-height:1.72}
+ .collection-prologue blockquote{font-size:20px;margin-top:32px}
+ .collection-chapter-nav{min-height:68px}
+ .collection-chapter-nav a{min-width:92px;padding:12px}
+ .chapter-artwork{height:62vh}
+ .chapter-narrative{min-height:0;padding:58px 23px 68px}
+ .chapter-power{margin-top:38px}
+ .chapter-narrative h2{font-size:46px;margin:18px 0 24px}
+ .chapter-narrative blockquote{font-size:18px;margin-bottom:24px}
+ .chapter-narrative>p{font-size:13px;line-height:1.7}
+ .chapter-actions{margin-top:30px}
+ .collection-gold-epilogue{min-height:60vh;padding:70px 22px}
+ .collection-gold-epilogue h2{font-size:47px;margin:28px 0}
+}
