@@ -81,7 +81,7 @@ export default function Acquire(){
   </section>}
 
   {selected!==null&&<div className="gallery-art-modal" role="dialog" aria-modal="true" aria-label={herWorks[selected].title}>
-   <button className="gallery-modal-close" onClick={()=>setSelected(null)}>CLOSE ×</button>
+   <header className="gallery-order-nav"><button onClick={()=>setSelected(null)}>← BACK TO GALLERY</button><a href="/" className="gallery-order-brand"><b>PAINTED GOLD</b><small>BY NIKI</small></a><nav><a href="/collection">COLLECTION</a><a href="/artist">ARTIST</a><button onClick={()=>setSelected(null)}>GALLERY</button></nav></header>
    <div className="gallery-modal-image"><Image src={herWorks[selected].image} alt={herWorks[selected].title} width={1365} height={2048} sizes="(max-width:850px) 100vw, 52vw"/><span>{herWorks[selected].no} / 09</span></div>
    <div className="gallery-modal-info">
     <div className="gallery-modal-mode"><button className={mode==="print"?"active":""} onClick={()=>setMode("print")}>FINE-ART PRINT</button><button className={mode==="original"?"active":""} onClick={()=>setMode("original")}>ORIGINAL</button></div>
