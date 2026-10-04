@@ -3,126 +3,103 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { herWorks } from "../her-data";
-import { SiteFooter, SiteNav } from "../site-components";
+import { SiteNav } from "../site-components";
 
-const works = herWorks.map(work => ({...work, size:"Original · one of one"}));
+const rooms = [
+ {name:"The Entrance",note:"GRACE · LEGACY · ALLURE",works:[0,1,2],tone:"ivory"},
+ {name:"The Gold Room",note:"SOVEREIGNTY · ROOTS · SPIRIT",works:[3,4,5],tone:"gold"},
+ {name:"The Inner Room",note:"COURAGE · REVERENCE · FREEDOM",works:[6,7,8],tone:"wine"}
+] as const;
 
 export default function Acquire(){
- const [mode,setMode]=useState<"print"|"original">("print");
+ const [entered,setEntered]=useState(false);
+ const [room,setRoom]=useState(0);
  const [selected,setSelected]=useState<number|null>(null);
+ const [mode,setMode]=useState<"print"|"original">("print");
  const [variant,setVariant]=useState("medium");
  const [ordering,setOrdering]=useState(false);
  const [checkoutError,setCheckoutError]=useState("");
- useEffect(()=>{if(location.hash==="#originals")setMode("original")},[]);
  const sizes=[{id:"small",label:"12 × 16 in",price:"$95"},{id:"medium",label:"18 × 24 in",price:"$165"},{id:"large",label:"24 × 32 in",price:"$245"}];
+
+ useEffect(()=>{if(location.hash==="#originals"){setMode("original");setEntered(true)}},[]);
+ useEffect(()=>{
+  const handle=(event:KeyboardEvent)=>{if(selected!==null&&event.key==="Escape")setSelected(null);else if(entered&&event.key==="ArrowRight")setRoom(v=>(v+1)%rooms.length);else if(entered&&event.key==="ArrowLeft")setRoom(v=>(v+rooms.length-1)%rooms.length)};
+  window.addEventListener("keydown",handle);return()=>window.removeEventListener("keydown",handle)
+ },[entered,selected]);
+
  async function beginCheckout(){
-  if(selected===null)return; setOrdering(true); setCheckoutError("");
-  try{const response=await fetch("/api/checkout",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({artworkId:works[selected].slug,variantId:variant,quantity:1})});const data=await response.json();if(!response.ok||!data.url)throw new Error(data.error||"Checkout is unavailable.");window.location.href=data.url}
+  if(selected===null)return;setOrdering(true);setCheckoutError("");
+  try{const response=await fetch("/api/checkout",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({artworkId:herWorks[selected].slug,variantId:variant,quantity:1})});const data=await response.json();if(!response.ok||!data.url)throw new Error(data.error||"Checkout is unavailable.");window.location.href=data.url}
   catch(error){setCheckoutError(error instanceof Error?error.message:"Checkout is unavailable.");setOrdering(false)}
  }
- const openWork=(i:number)=>{setSelected(i);setVariant("medium");setCheckoutError("")};
+ const openWork=(index:number)=>{setSelected(index);setVariant("medium");setCheckoutError("")};
+ const move=(direction:number)=>setRoom(current=>(current+direction+rooms.length)%rooms.length);
 
- return <main className="shop-v3">
-  <SiteNav />
+ return <main className={`gallery-shop gallery-tone-${rooms[room].tone}`}>
+  <SiteNav dark/>
 
-  <section className="shop-v3-hero">
-   <div className="shop-v3-copy">
-    <span>THE HER COLLECTION · FINE-ART PRINTS</span>
-    <h1>Live with<br/><em>her power.</em></h1>
-    <p>Nine portraits. Nine expressions of womanhood. Choose the one that speaks to you—and make her part of your space.</p>
-    <div className="shop-v3-actions">
-     <a href="#shop-works">Shop the collection</a>
-     <button onClick={()=>{setMode("original");document.querySelector("#shop-works")?.scrollIntoView({behavior:"smooth"})}}>Explore originals</button>
-    </div>
-    <small>FINE-ART PRINTS FROM $95 CAD</small>
+  {!entered&&<section className="gallery-entry">
+   <div className="gallery-entry-art">
+    <Image src={herWorks[8].image} alt={herWorks[8].title} width={1365} height={2048} priority/>
    </div>
-   <div className="shop-v3-feature">
-    <Image src={works[8].image} alt={works[8].title} width={1365} height={2048} priority sizes="(max-width: 850px) 100vw, 55vw"/>
-    <div className="shop-v3-feature-meta"><span>09 · FEATURED</span><div><b>{works[8].title}</b><small>Freedom · Confidence · Presence</small></div><button onClick={()=>openWork(8)}>Collect this work</button></div>
+   <div className="gallery-entry-copy">
+    <span>PAINTED GOLD BY NIKI PRESENTS</span>
+    <h1>Enter<br/><em>H E R.</em></h1>
+    <p>A virtual exhibition of nine women and nine forms of power. Walk through the rooms. Choose the portrait that speaks to you.</p>
+    <button onClick={()=>setEntered(true)}>Enter the gallery</button>
+    <small>USE THE ARROWS TO EXPLORE · CLICK ANY PAINTING</small>
    </div>
-  </section>
+  </section>}
 
-  <section className="shop-promise">
-   <span>ARCHIVAL FINE-ART QUALITY</span><i/>
-   <span>MADE TO ORDER</span><i/>
-   <span>SECURE CHECKOUT</span><i/>
-   <span>SHIPPED WITH CARE</span>
-  </section>
+  {entered&&<section className="gallery-world" aria-label={rooms[room].name}>
+   <header className="gallery-hud">
+    <div><span>VIRTUAL EXHIBITION</span><b>H E R</b></div>
+    <div className="gallery-room-name"><span>ROOM 0{room+1} / 03</span><b>{rooms[room].name}</b><small>{rooms[room].note}</small></div>
+    <div className="gallery-mode"><button className={mode==="print"?"active":""} onClick={()=>setMode("print")}>Prints</button><button className={mode==="original"?"active":""} onClick={()=>setMode("original")}>Originals</button></div>
+   </header>
 
-  <section className="shop-v3-intro" id="shop-works">
-   <div>
-    <span>COLLECT H E R</span>
-    <h2>Which power<br/>belongs in your space?</h2>
+   <div className="gallery-ceiling"/><div className="gallery-floor"/>
+   <div className="gallery-wall">
+    {rooms[room].works.map((workIndex,position)=>{
+     const work=herWorks[workIndex];
+     return <button className={`gallery-frame gallery-frame-${position+1}`} key={work.no} onClick={()=>openWork(workIndex)} aria-label={`View ${work.title}`}>
+      <span className="gallery-spotlight"/>
+      <span className="gallery-frame-border"><Image src={work.image} alt={work.title} width={1365} height={2048} sizes="30vw"/></span>
+      <span className="gallery-plaque"><b>{work.title}</b><small>{work.power}</small></span>
+      <i>+</i>
+     </button>
+    })}
    </div>
-   <p>Choose a museum-quality print, or enquire privately about the one-of-one original. Every work carries its own presence and story.</p>
-  </section>
 
-  <div className="shop-v3-tabs" id="originals">
-   <button className={mode==="print"?"active":""} onClick={()=>setMode("print")}><b>01</b><span>Fine-art prints<small>Order online · From $95 CAD</small></span></button>
-   <button className={mode==="original"?"active":""} onClick={()=>setMode("original")}><b>02</b><span>Original paintings<small>One of one · Private acquisition</small></span></button>
-  </div>
+   <button className="gallery-arrow gallery-prev" onClick={()=>move(-1)} aria-label="Previous room"><span>←</span><small>PREVIOUS ROOM</small></button>
+   <button className="gallery-arrow gallery-next" onClick={()=>move(1)} aria-label="Next room"><small>NEXT ROOM</small><span>→</span></button>
 
-  <section className="shop-v3-grid">
-   {works.map((w,i)=><article className="shop-v3-card" id={`work-${w.no}`} key={w.no}>
-    <button className="shop-v3-image" onClick={()=>openWork(i)}>
-     <Image src={w.image} alt={w.title} width={1365} height={2048} sizes="(max-width: 850px) 100vw, 50vw"/>
-     <span>{mode==="print"?"VIEW & SELECT SIZE":"VIEW ORIGINAL"}</span>
-    </button>
-    <div className="shop-v3-card-meta">
-     <span>{w.no}</span>
-     <div><small>{w.power.toUpperCase()}</small><h3>{w.title}</h3><p>{w.line}</p></div>
-     <div className="shop-v3-price"><b>{mode==="print"?"FROM $95":"ONE OF ONE"}</b><button onClick={()=>openWork(i)}>{mode==="print"?"Select print":"Enquire"}</button></div>
-    </div>
-   </article>)}
-  </section>
-
-  <section className="shop-v3-room">
-   <div className="shop-v3-room-image"><Image src="/rooms/golden-poise.png" alt="Fine-art print displayed in an interior" width={1800} height={1200}/></div>
-   <div>
-    <span>ART CHANGES A ROOM</span>
-    <h2>Not simply a print.<br/>A presence.</h2>
-    <p>HER was created to be lived with. Each portrait brings its own energy into a space—quiet grace, courage, sovereignty, roots or unapologetic freedom.</p>
-    <a href="#shop-works">Find yours</a>
+   <div className="gallery-map">
+    {rooms.map((item,index)=><button key={item.name} className={room===index?"active":""} onClick={()=>setRoom(index)}><span>0{index+1}</span><i/></button>)}
    </div>
-  </section>
+   <div className="gallery-help">CLICK A PAINTING TO COLLECT</div>
+  </section>}
 
-  <section className="shop-v3-care">
-   <header><span>MADE FOR COLLECTING</span><h2>Beautifully made.<br/>Thoughtfully delivered.</h2></header>
-   <div>
-    <article><b>01</b><h3>Fine-art production</h3><p>Rich colour and considered detail, professionally produced as an archival-quality art print.</p></article>
-    <article><b>02</b><h3>Made for you</h3><p>Each edition is created to order in your selected size rather than taken from mass-produced stock.</p></article>
-    <article><b>03</b><h3>Protected journey</h3><p>Carefully packaged, securely paid through Stripe, and delivered directly to your address.</p></article>
-   </div>
-  </section>
-
-  <section className="shop-v3-originals">
-   <span>FOR THE ONE-OF-ONE COLLECTOR</span>
-   <h2>The original exists<br/>only once.</h2>
-   <p>To experience the canvas, texture and gold detail in person, begin a private conversation with the studio.</p>
-   <a href="mailto:studio@paintedgoldbyniki.com?subject=Original artwork enquiry">Enquire about an original</a>
-  </section>
-
-  {selected!==null&&<div className="shop-v3-modal" role="dialog" aria-modal="true" aria-label={works[selected].title}>
-   <button className="shop-v3-close" onClick={()=>setSelected(null)}>Close</button>
-   <div className="shop-v3-modal-art"><Image src={works[selected].image} alt={works[selected].title} width={1365} height={2048} sizes="(max-width: 850px) 100vw, 52vw"/><span>{works[selected].no} / 09</span></div>
-   <div className="shop-v3-modal-copy">
-    <span>{mode==="print"?"FINE-ART PRINT":"ONE-OF-ONE ORIGINAL"}</span>
-    <h2>{works[selected].title}</h2>
-    <blockquote>{works[selected].line}</blockquote>
-    <p>{mode==="print"?"Choose the scale that feels right for your space. Your print is individually produced and carefully prepared for delivery.":works[selected].story}</p>
+  {selected!==null&&<div className="gallery-art-modal" role="dialog" aria-modal="true" aria-label={herWorks[selected].title}>
+   <button className="gallery-modal-close" onClick={()=>setSelected(null)}>CLOSE ×</button>
+   <div className="gallery-modal-image"><Image src={herWorks[selected].image} alt={herWorks[selected].title} width={1365} height={2048} sizes="(max-width:850px) 100vw, 52vw"/><span>{herWorks[selected].no} / 09</span></div>
+   <div className="gallery-modal-info">
+    <div className="gallery-modal-mode"><button className={mode==="print"?"active":""} onClick={()=>setMode("print")}>FINE-ART PRINT</button><button className={mode==="original"?"active":""} onClick={()=>setMode("original")}>ORIGINAL</button></div>
+    <span>{herWorks[selected].power.toUpperCase()}</span>
+    <h2>{herWorks[selected].title}</h2>
+    <blockquote>{herWorks[selected].line}</blockquote>
+    <p>{mode==="print"?"Bring this portrait into your space as a museum-quality fine-art print, produced individually to order.":herWorks[selected].story}</p>
     {mode==="print"?<>
-     <label>SELECT YOUR SIZE</label>
-     <div className="shop-v3-sizes">{sizes.map(size=><button key={size.id} className={variant===size.id?"selected":""} onClick={()=>setVariant(size.id)}><span>{size.label}</span><strong>{size.price} CAD</strong></button>)}</div>
-     <button className="shop-v3-buy" disabled={ordering} onClick={beginCheckout}>{ordering?"OPENING SECURE CHECKOUT…":"CONTINUE TO SECURE CHECKOUT"}</button>
+     <label>CHOOSE YOUR SIZE</label>
+     <div className="gallery-sizes">{sizes.map(size=><button key={size.id} className={variant===size.id?"selected":""} onClick={()=>setVariant(size.id)}><span>{size.label}</span><strong>{size.price} CAD</strong></button>)}</div>
+     <button className="gallery-checkout" disabled={ordering} onClick={beginCheckout}>{ordering?"OPENING CHECKOUT…":"COLLECT THIS PRINT"}</button>
      {checkoutError&&<p className="checkout-error">{checkoutError}</p>}
-     <small>Made to order · Shipping calculated at checkout · Secure payment</small>
+     <small>ARCHIVAL QUALITY · MADE TO ORDER · SECURE CHECKOUT</small>
     </>:<>
-     <div className="shop-v3-original-note"><b>AN EXCLUSIVE WORK</b><span>Availability and pricing are shared privately by the studio.</span></div>
-     <a className="shop-v3-enquire" href={`mailto:studio@paintedgoldbyniki.com?subject=Original enquiry — ${works[selected].title}`}>Enquire about this original</a>
+     <div className="gallery-one-only"><b>ONE PAINTING. ONE COLLECTOR.</b><span>Contact the studio for availability, pricing, or an in-person viewing.</span></div>
+     <a href={`mailto:studio@paintedgoldbyniki.com?subject=Original enquiry — ${herWorks[selected].title}`}>ENQUIRE ABOUT THE ORIGINAL</a>
     </>}
    </div>
   </div>}
-
-  <SiteFooter/>
  </main>
 }
