@@ -8,7 +8,8 @@ export function Brand(){return <div className="brand compact-brand"><span>PAINTE
 
 export function SiteNav({dark=false}:{dark?:boolean}){
  const [open,setOpen]=useState(false);
- const [transitioning,setTransitioning]=useState(false);\n const [galleryTransition,setGalleryTransition]=useState(false);
+ const [transitioning,setTransitioning]=useState(false);
+ const [galleryTransition,setGalleryTransition]=useState(false);
  const router=useRouter();
  const pathname=usePathname();
  useEffect(()=>setTransitioning(false),[pathname]);
