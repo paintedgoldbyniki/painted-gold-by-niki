@@ -537,3 +537,34 @@
  .gallery-art-modal{padding-top:62px;grid-template-columns:1fr}.gallery-order-nav{height:62px;padding:0 17px;grid-template-columns:1fr auto}.gallery-order-brand{justify-self:end}.gallery-order-nav nav{display:none}
  .gallery-modal-image{height:49svh;min-height:340px;padding:25px 46px 20px}.gallery-modal-image img{max-height:100%;max-width:100%}.gallery-modal-info{padding:38px 22px 60px}.gallery-modal-info h2{font-size:44px}
 }
+
+
+/* Final phone usability pass */
+@media(max-width:850px){
+ html,body{max-width:100%;overflow-x:hidden}
+ .gallery-world{min-height:100svh}
+ .gallery-wall{left:0;right:0;top:20%;bottom:20%;padding:0 17vw;gap:12vw;justify-content:flex-start;overflow-x:auto;overflow-y:visible;scroll-snap-type:x mandatory;scrollbar-width:none;perspective:none}
+ .gallery-wall::-webkit-scrollbar{display:none}
+ .gallery-wall:before{position:fixed;inset:20% 0 20%;pointer-events:none}
+ .gallery-frame,.gallery-frame-1,.gallery-frame-3{flex:0 0 58vw;width:58vw;height:52vh;min-height:350px;transform:none;scroll-snap-align:center}
+ .gallery-frame:hover,.gallery-frame-1:hover,.gallery-frame-3:hover{transform:none}
+ .gallery-frame-border{padding:6px}
+ .gallery-spotlight{width:145%;top:-38%}
+ .gallery-moulding{left:5%;right:5%}
+ .gallery-plaque{min-width:150px}
+ .gallery-plaque b{font-size:14px}
+ .gallery-room-name small{max-width:190px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ .gallery-mode{gap:4px}.gallery-mode button{font-size:6px;padding-inline:8px}
+ .gallery-arrow{bottom:39px}.gallery-map{bottom:49px}
+ .mobile-nav{max-height:calc(100svh - 68px);overflow:auto}
+ .site-footer{grid-template-columns:1fr;gap:28px;align-items:start;padding:42px 24px}
+ .site-footer nav{flex-wrap:wrap;gap:18px 24px}.site-footer p{text-align:left}
+ .artist-about-photo figcaption b{display:none}
+ .power-entry{min-height:96px}
+}
+@media(max-width:430px){
+ .collection-page-grid,.her-nine-grid,.shop-grid{grid-template-columns:1fr}
+ .her-nine-grid .cinema-work-art,.inner-art{height:460px}
+ .artist-about-photo,.artist-why-image,.artist-letter-art,.artist-process-screen{height:470px}
+ .gallery-modal-image{padding-inline:34px}
+}
