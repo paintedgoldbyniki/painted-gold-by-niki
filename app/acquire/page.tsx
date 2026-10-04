@@ -12,7 +12,7 @@ const rooms = [
 ] as const;
 
 export default function Acquire(){
- const [entered,setEntered]=useState(false);
+ const [entered,setEntered]=useState(true);
  const [room,setRoom]=useState(0);
  const [selected,setSelected]=useState<number|null>(null);
  const [mode,setMode]=useState<"print"|"original">("print");
@@ -58,7 +58,7 @@ export default function Acquire(){
     <div className="gallery-mode"><button className={mode==="print"?"active":""} onClick={()=>setMode("print")}>Prints</button><button className={mode==="original"?"active":""} onClick={()=>setMode("original")}>Originals</button></div>
    </header>
 
-   <div className="gallery-ceiling"/><div className="gallery-floor"/>
+   <div className="gallery-ceiling"/><div className="gallery-sidewall gallery-sidewall-left"/><div className="gallery-sidewall gallery-sidewall-right"/><div className="gallery-moulding"/><div className="gallery-floor"/>
    <div className="gallery-wall">
     {rooms[room].works.map((workIndex,position)=>{
      const work=herWorks[workIndex];
