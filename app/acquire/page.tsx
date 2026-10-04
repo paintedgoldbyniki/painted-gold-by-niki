@@ -21,7 +21,7 @@ export default function Acquire(){
  const [checkoutError,setCheckoutError]=useState("");
  const sizes=[{id:"small",label:"12 × 16 in",price:"$95"},{id:"medium",label:"18 × 24 in",price:"$165"},{id:"large",label:"24 × 32 in",price:"$245"}];
 
- useEffect(()=>{if(location.hash==="#originals"){setMode("original");setEntered(true)}},[]);
+ useEffect(()=>{window.scrollTo(0,0);if(location.hash==="#originals"){setMode("original");setEntered(true)}},[]);
  useEffect(()=>{
   const handle=(event:KeyboardEvent)=>{if(selected!==null&&event.key==="Escape")setSelected(null);else if(entered&&event.key==="ArrowRight")setRoom(v=>(v+1)%rooms.length);else if(entered&&event.key==="ArrowLeft")setRoom(v=>(v+rooms.length-1)%rooms.length)};
   window.addEventListener("keydown",handle);return()=>window.removeEventListener("keydown",handle)
