@@ -13,7 +13,7 @@ const rooms = [
 
 export default function Acquire(){
  const [entered,setEntered]=useState(true);
- const [room,setRoom]=useState(0);
+ const [room,setRoom]=useState(0);\n const [mobileWork,setMobileWork]=useState(0);
  const [selected,setSelected]=useState<number|null>(null);
  const [mode,setMode]=useState<"print"|"original">("print");
  const [variant,setVariant]=useState("medium");
@@ -33,9 +33,9 @@ export default function Acquire(){
   catch(error){setCheckoutError(error instanceof Error?error.message:"Checkout is unavailable.");setOrdering(false)}
  }
  const openWork=(index:number)=>{setSelected(index);setVariant("medium");setCheckoutError("")};
- const move=(direction:number)=>setRoom(current=>(current+direction+rooms.length)%rooms.length);
+ const move=(direction:number)=>{\n  if(typeof window!=="undefined"&&window.matchMedia("(max-width: 850px)").matches){const next=(mobileWork+direction+herWorks.length)%herWorks.length;setMobileWork(next);setRoom(Math.floor(next/3));return}\n  setRoom(current=>(current+direction+rooms.length)%rooms.length)\n };\n const chooseRoom=(index:number)=>{setRoom(index);setMobileWork(index*3)};
 
- return <main className={`gallery-shop gallery-tone-${rooms[room].tone}`}>
+ return <main className={`gallery-shop gallery-tone-${rooms[room].tone} gallery-art-light-${mobileWork+1}`}>
   <SiteNav dark/>
 
   {!entered&&<section className="gallery-entry">
@@ -54,7 +54,7 @@ export default function Acquire(){
   {entered&&<section className="gallery-world" aria-label={rooms[room].name}>
    <header className="gallery-hud">
     <div><span>VIRTUAL EXHIBITION</span><b>H E R</b></div>
-    <div className="gallery-room-name"><span>ROOM 0{room+1} / 03</span><b>{rooms[room].name}</b><small>{rooms[room].note}</small></div>
+    <div className="gallery-room-name"><span className="desktop-room-count">ROOM 0{room+1} / 03</span><span className="mobile-art-count">ARTWORK {String(mobileWork+1).padStart(2,"0")} / 09</span><b>{rooms[room].name}</b><small>{rooms[room].note}</small></div>
     <div className="gallery-mode"><button className={mode==="print"?"active":""} onClick={()=>setMode("print")}>Prints</button><button className={mode==="original"?"active":""} onClick={()=>setMode("original")}>Originals</button></div>
    </header>
 
@@ -62,7 +62,7 @@ export default function Acquire(){
    <div className="gallery-wall">
     {rooms[room].works.map((workIndex,position)=>{
      const work=herWorks[workIndex];
-     return <button className={`gallery-frame gallery-frame-${position+1}`} key={work.no} onClick={()=>openWork(workIndex)} aria-label={`View ${work.title}`}>
+     return <button className={`gallery-frame gallery-frame-${position+1} ${workIndex===mobileWork?"mobile-active":""}`} data-artwork={workIndex+1} key={work.no} onClick={()=>openWork(workIndex)} aria-label={`View ${work.title}`}>
       <span className="gallery-spotlight"/>
       <span className="gallery-frame-border"><Image src={work.image} alt={work.title} width={1365} height={2048} sizes="30vw"/></span>
       <span className="gallery-plaque"><b>{work.title}</b><small>{work.power}</small></span>
@@ -75,7 +75,7 @@ export default function Acquire(){
    <button className="gallery-arrow gallery-next" onClick={()=>move(1)} aria-label="Next room"><small>NEXT ROOM</small><span>→</span></button>
 
    <div className="gallery-map">
-    {rooms.map((item,index)=><button key={item.name} className={room===index?"active":""} onClick={()=>setRoom(index)}><span>0{index+1}</span><i/></button>)}
+    {rooms.map((item,index)=><button key={item.name} className={room===index?"active":""} onClick={()=>chooseRoom(index)}><span>0{index+1}</span><i/></button>)}
    </div>
    <div className="gallery-help">CLICK A PAINTING TO COLLECT</div>
   </section>}
