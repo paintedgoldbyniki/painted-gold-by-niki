@@ -568,3 +568,92 @@
  .artist-about-photo,.artist-why-image,.artist-letter-art,.artist-process-screen{height:470px}
  .gallery-modal-image{padding-inline:34px}
 }
+
+
+/* Comprehensive handset layout corrections */
+@media(max-width:600px){
+ .site-nav{position:relative;height:68px}
+ .luxury-nav{grid-template-columns:1fr auto;padding:0 16px}
+ .luxury-nav>.nav-logo{justify-self:start!important}
+ .luxury-nav .nav-logo .compact-brand span{font-size:15px;letter-spacing:.2em}
+ .luxury-nav .nav-logo .compact-brand small{letter-spacing:.38em}
+ .luxury-nav>.nav-toggle{justify-self:end}
+ .mobile-nav{top:68px;padding:28px 22px 36px;gap:0;background:#181a13}
+ .mobile-nav.open{display:flex}
+ .mobile-nav .route-link{width:100%;padding:17px 0;border-bottom:1px solid rgba(255,255,255,.13);text-align:left;font:400 22px Georgia,serif;color:#eee9df}
+ .nav-transition>div{width:86vw}
+
+ .cinema-hero{height:calc(100svh - 68px);min-height:650px}
+ .cinema-hero-bg{object-position:61% center}
+ .cinema-shade{background:linear-gradient(0deg,rgba(12,13,9,.96) 0%,rgba(12,13,9,.65) 47%,rgba(12,13,9,.1) 78%)}
+ .cinema-hero-copy{left:22px;right:22px;bottom:78px;top:auto;transform:none;max-width:none}
+ .cinema-hero-copy>p{font-size:7px}
+ .cinema-hero-copy h1{font-size:51px;line-height:.94;margin:19px 0}
+ .cinema-hero-copy h1 em{font-size:33px}
+ .cinema-hero-copy>span{font-size:14px;line-height:1.6}
+ .cinema-hero-copy>div{flex-wrap:wrap;gap:18px;margin-top:25px}
+ .cinema-hero-note,.cinema-scroll{display:none}
+ .cinema-manifesto{padding:72px 22px}
+ .cinema-manifesto p{font-size:43px}
+ .cinema-manifesto small{font-size:14px;line-height:1.75}
+ .cinema-featured{padding:72px 18px}
+ .cinema-featured header,.section-heading{grid-template-columns:1fr;gap:26px;margin-bottom:45px}
+ .cinema-featured header h2{font-size:42px}
+ .her-nine-grid{grid-template-columns:1fr;gap:48px}
+ .her-nine-grid .cinema-work-art{height:auto;aspect-ratio:2/3}
+ .cinema-work-info{grid-template-columns:26px 1fr}
+ .cinema-work-info strong{grid-column:2;text-align:left;margin-top:8px}
+ .her-gold-statement{min-height:0;padding:72px 22px}
+ .her-gold-statement h2{font-size:45px}
+ .cinema-story>img{height:auto;aspect-ratio:2/3}
+ .cinema-story-copy{padding:65px 22px}
+ .cinema-story blockquote{font-size:34px}
+ .cinema-original{min-height:540px;padding:70px 22px}
+ .cinema-original h2{font-size:45px}
+
+ .cinematic-collection-hero{min-height:calc(100svh - 68px)}
+ .collection-prologue{padding:70px 22px}
+ .collection-chapter{min-height:0!important;padding:70px 20px!important}
+ .chapter-inner{grid-template-columns:1fr!important;gap:35px!important}
+ .chapter-art{height:auto!important;aspect-ratio:2/3}
+ .chapter-copy h2{font-size:44px!important}
+ .chapter-copy p{font-size:15px!important}
+ .collection-end{padding:75px 22px}
+
+ .gold-within-page .site-nav{position:relative;background:#171911}
+ .gold-within-hero{padding:65px 22px 60px}
+ .gold-hero-copy h1{font-size:54px}
+ .gold-hero-art{height:520px;min-height:0}
+ .gold-detail{border-width:6px}
+ .power-entry{grid-template-columns:24px 54px 1fr}
+ .power-entry h3{font-size:22px}
+ .gold-final h2{font-size:43px}
+
+ .artist-about-hero{padding-top:48px}
+ .artist-about-copy h1{font-size:53px}
+ .artist-about-photo{height:auto;aspect-ratio:4/5}
+ .meet-niki h2,.artist-why-copy h2,.artist-gold-note h2{font-size:39px}
+ .artist-why-image,.artist-letter-art{height:auto;aspect-ratio:4/5}
+ .artist-letter-copy>p{font-size:30px}
+
+ .gallery-hud{top:68px;padding:13px 14px}
+ .gallery-room-name b{font-size:16px}
+ .gallery-world{height:100svh}
+ .gallery-wall{top:22%;bottom:22%;padding:0 15vw}
+ .gallery-frame,.gallery-frame-1,.gallery-frame-3{flex-basis:70vw;width:70vw;height:50vh}
+ .gallery-plaque{top:calc(100% + 8px)}
+ .gallery-sidewall{top:21%;bottom:23%}
+ .gallery-moulding{top:24%;bottom:25%}
+ .gallery-arrow{bottom:28px}.gallery-map{bottom:37px}
+ .gallery-order-nav{height:58px}
+ .gallery-art-modal{padding-top:58px}
+ .gallery-modal-image{height:43svh;min-height:300px;padding:18px 44px}
+ .gallery-modal-info{padding:30px 20px 55px}
+ .gallery-modal-mode{position:sticky;top:58px;z-index:2;background:#f2ede5}
+ .gallery-modal-info h2{font-size:40px}
+ .gallery-modal-info blockquote{font-size:16px}
+ .gallery-sizes button{min-height:46px}
+ .gallery-checkout{min-height:50px}
+
+ .site-footer .compact-brand{justify-self:start}
+}
