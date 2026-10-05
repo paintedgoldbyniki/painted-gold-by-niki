@@ -657,3 +657,153 @@
 
  .site-footer .compact-brand{justify-self:start}
 }
+
+
+/* Phone-native redesign — each route treated independently */
+.mobile-art-count{display:none}
+@media(max-width:600px){
+ /* Header: fixed two-zone composition, no overlap */
+ .site-nav.luxury-nav{display:flex!important;justify-content:space-between!important;align-items:center!important;width:100%;height:64px;padding:0 15px!important}
+ .luxury-nav .nav-left,.luxury-nav .nav-right,.luxury-nav>.nav-enquire{display:none!important}
+ .luxury-nav>.nav-logo{position:static!important;inset:auto!important;transform:none!important;max-width:calc(100vw - 74px);min-width:0;flex:1;justify-self:auto!important;text-align:left}
+ .luxury-nav .nav-logo .compact-brand{align-items:flex-start}
+ .luxury-nav .nav-logo .compact-brand span{font-size:13px!important;letter-spacing:.17em!important;white-space:nowrap}
+ .luxury-nav .nav-logo .compact-brand small{font-size:6px!important;letter-spacing:.32em!important;margin-top:4px}
+ .luxury-nav>.nav-toggle{display:block!important;position:static!important;flex:0 0 42px;width:42px;height:42px;margin:0;padding:8px;border:1px solid rgba(151,119,61,.38);color:inherit}
+ .luxury-nav>.nav-toggle span{width:20px;margin:5px auto}
+ .mobile-nav{top:64px!important}
+ .gold-within-page .site-nav{position:relative!important}
+
+ /* Homepage */
+ .cinema-hero{height:calc(100svh - 64px);min-height:610px}
+ .cinema-hero-copy{bottom:48px}
+ .cinema-hero-copy h1{font-size:45px}
+ .cinema-hero-copy h1 em{font-size:29px}
+ .cinema-hero-copy>span{font-size:13px}
+ .cinema-gold-btn,.cinema-ghost-link{font-size:8px!important}
+ .cinema-manifesto p{font-size:38px}
+ .cinema-featured header h2{font-size:38px}
+ .her-nine-grid .cinema-work-art{aspect-ratio:4/5}
+ .cinema-work-info h3{font-size:22px}
+ .her-gold-statement h2,.cinema-original h2{font-size:40px}
+ .cinema-story blockquote{font-size:30px}
+
+ /* Collection: compact chapters, image always complete before copy */
+ .collection-film-hero{min-height:calc(100svh - 64px);height:calc(100svh - 64px)}
+ .collection-film-intro{left:21px!important;right:21px!important;bottom:55px!important;top:auto!important}
+ .collection-film-intro h1{font-size:64px!important}
+ .collection-film-intro p{font-size:14px!important}
+ .collection-film-index{display:none}
+ .collection-prologue{padding:62px 21px!important;grid-template-columns:1fr!important;gap:30px!important}
+ .collection-prologue h2{font-size:41px!important}
+ .collection-prologue p,.collection-prologue blockquote{font-size:14px!important;line-height:1.75!important}
+ .collection-chapter-nav{top:64px;overflow-x:auto;justify-content:flex-start;padding:0 16px;scrollbar-width:none}
+ .collection-chapter-nav a{flex:0 0 auto;min-width:88px}
+ .collection-chapter{display:flex!important;flex-direction:column!important;min-height:0!important;padding:0!important}
+ .collection-chapter.chapter-reverse .chapter-artwork{order:0!important}
+ .chapter-artwork{width:100%!important;height:auto!important;aspect-ratio:4/5!important;min-height:0!important}
+ .chapter-artwork img{object-fit:cover!important}
+ .chapter-frame-label{display:none}
+ .chapter-narrative{width:100%!important;padding:48px 21px 62px!important}
+ .chapter-narrative h2{font-size:42px!important}
+ .chapter-narrative blockquote{font-size:19px!important}
+ .chapter-narrative p{font-size:14px!important;line-height:1.75!important}
+ .chapter-actions{flex-direction:column;align-items:flex-start;gap:20px!important}
+ .chapter-watermark{font-size:110px!important;opacity:.045!important}
+ .collection-gold-epilogue{padding:72px 22px!important}
+ .collection-gold-epilogue h2{font-size:42px!important}
+ .collection-gold-epilogue>div{flex-direction:column;gap:22px!important}
+
+ /* The Gold Within */
+ .gold-within-hero{padding:50px 21px 55px!important;gap:38px!important}
+ .gold-hero-copy h1{font-size:49px!important}
+ .gold-hero-copy p{font-size:15px!important}
+ .gold-hero-art{height:auto!important;aspect-ratio:4/5}
+ .gold-detail{width:34%;height:39%;bottom:-14px}
+ .gold-meaning{padding:62px 21px!important}
+ .gold-meaning h2,.nine-powers h2,.gold-connection h2{font-size:40px!important}
+ .gold-quote{padding:58px 21px!important}
+ .gold-quote p{font-size:29px!important}
+ .nine-powers{padding:62px 17px!important}
+ .power-entry{grid-template-columns:22px 54px 1fr!important;gap:11px!important;padding:13px 0!important}
+ .power-entry p{font-size:13px!important;line-height:1.5!important}
+ .power-entry b{font-size:7px!important}
+ .connection-image{height:auto!important;aspect-ratio:4/5}
+ .gold-connection>div:last-child{padding:60px 22px!important}
+ .gold-final{min-height:0!important;padding:72px 21px!important}
+ .gold-final h2{font-size:40px!important}
+
+ /* Artist */
+ .artist-about-hero{padding:45px 21px 55px!important;gap:34px!important}
+ .artist-about-copy h1{font-size:49px!important}
+ .artist-about-lead{font-size:15px!important}
+ .artist-about-photo{aspect-ratio:4/5!important}
+ .meet-niki{padding:62px 21px!important;gap:28px!important}
+ .meet-niki h2,.artist-why-copy h2,.artist-gold-note h2{font-size:37px!important}
+ .meet-niki>div>p,.artist-why-copy>p,.artist-gold-note p{font-size:14px!important}
+ .artist-why-image,.artist-letter-art{aspect-ratio:4/5!important}
+ .artist-why-copy,.artist-letter-copy{padding:58px 21px!important}
+ .artist-why-copy blockquote{font-size:18px!important}
+ .artist-gold-note{padding:60px 21px!important}
+ .artist-letter-copy>p{font-size:28px!important}
+ .artist-personal-details>div{padding:24px 21px!important}
+ .artist-about-closing{padding:68px 21px!important}
+ .artist-about-closing h2{font-size:40px!important}
+
+ /* Gallery: one full artwork at a time, title always visible */
+ .gallery-shop{height:100svh;min-height:100svh}
+ .gallery-world{height:calc(100svh - 64px)!important;min-height:560px;margin-top:0;transition:background .65s ease}
+ .gallery-hud{top:64px!important;height:72px;padding:10px 13px!important;align-items:start}
+ .desktop-room-count{display:none}.mobile-art-count{display:block}
+ .gallery-room-name b{font-size:15px!important;margin-top:3px}
+ .gallery-room-name small{display:none}
+ .gallery-mode{padding-top:3px}
+ .gallery-mode button{height:30px!important}
+ .gallery-wall{left:0!important;right:0!important;top:145px!important;bottom:105px!important;padding:0!important;display:grid!important;place-items:center!important;overflow:visible!important}
+ .gallery-frame{display:none!important}
+ .gallery-frame.mobile-active{display:block!important;width:auto!important;height:calc(100svh - 350px)!important;max-height:480px;min-height:270px;aspect-ratio:2/3;position:relative}
+ .gallery-frame-border{width:100%!important;height:100%!important;padding:5px!important}
+ .gallery-plaque{top:calc(100% + 10px)!important;min-width:220px!important;color:#201f1a!important}
+ .gallery-tone-wine .gallery-plaque{color:#f5eee5!important}
+ .gallery-plaque b{font-size:17px!important}.gallery-plaque small{font-size:7px!important;margin-top:4px}
+ .gallery-spotlight{width:180%!important;height:100%!important;top:-45%!important}
+ .gallery-ceiling{height:15%!important}.gallery-floor{height:20%!important}
+ .gallery-sidewall{top:15%!important;bottom:19%!important}
+ .gallery-moulding{left:7%!important;right:7%!important;top:19%!important;bottom:22%!important}
+ .gallery-arrow{top:auto!important;bottom:21px!important}
+ .gallery-arrow span{width:42px!important;height:42px!important;background:rgba(255,255,255,.22);backdrop-filter:blur(6px)}
+ .gallery-prev{left:16px!important}.gallery-next{right:16px!important}
+ .gallery-map{bottom:28px!important}.gallery-map button{display:none}.gallery-map button.active{display:flex}.gallery-map button.active i{width:55px}
+ .gallery-help{display:block!important;left:50%!important;bottom:73px!important;transform:translateX(-50%);white-space:nowrap;font-size:6px!important}
+ .gallery-wall:after{bottom:-11%!important}
+
+ /* Per-artwork ambient lighting */
+ .gallery-art-light-1 .gallery-world{background:radial-gradient(circle at 50% 25%,#f2ead0 0,#c5c4a9 50%,#817b65 100%)}
+ .gallery-art-light-2 .gallery-world{background:radial-gradient(circle at 50% 25%,#f5dfd8 0,#d4ada7 52%,#8f6c68 100%)}
+ .gallery-art-light-3 .gallery-world{background:radial-gradient(circle at 50% 25%,#f4ead3 0,#d6c8ab 52%,#967e61 100%)}
+ .gallery-art-light-4 .gallery-world{background:radial-gradient(circle at 50% 25%,#dbe5d4 0,#91a48e 52%,#506654 100%)}
+ .gallery-art-light-5 .gallery-world{background:radial-gradient(circle at 50% 25%,#efcfad 0,#b78966 52%,#72503e 100%)}
+ .gallery-art-light-6 .gallery-world{background:radial-gradient(circle at 50% 25%,#d8ead7 0,#82a18a 52%,#466653 100%)}
+ .gallery-art-light-7 .gallery-world{background:radial-gradient(circle at 50% 25%,#ded2c2 0,#9b826b 52%,#5f4a3d 100%)}
+ .gallery-art-light-8 .gallery-world{background:radial-gradient(circle at 50% 25%,#efd9dc 0,#b9999f 52%,#71565e 100%)}
+ .gallery-art-light-9 .gallery-world{background:radial-gradient(circle at 50% 25%,#efd9e5 0,#aa879c 52%,#60495b 100%)}
+ .gallery-art-light-4 .gallery-hud,.gallery-art-light-5 .gallery-hud,.gallery-art-light-6 .gallery-hud,.gallery-art-light-7 .gallery-hud,.gallery-art-light-8 .gallery-hud,.gallery-art-light-9 .gallery-hud{color:#f7f0e7}
+
+ /* Order screen */
+ .gallery-order-nav{height:58px!important;padding:0 14px!important}
+ .gallery-order-nav>button{font-size:7px!important}
+ .gallery-order-brand b{font-size:13px!important}
+ .gallery-art-modal{padding-top:58px!important;display:block!important;overflow-y:auto!important}
+ .gallery-modal-image{height:auto!important;min-height:0!important;padding:24px 52px 18px!important}
+ .gallery-modal-image img{width:auto!important;height:auto!important;max-height:46svh!important}
+ .gallery-modal-image>span{bottom:8px!important}
+ .gallery-modal-info{padding:28px 20px 55px!important}
+ .gallery-modal-mode{position:static!important;margin-bottom:22px!important}
+ .gallery-modal-info h2{font-size:38px!important}
+ .gallery-modal-info>p{font-size:13px!important}
+ .gallery-sizes button{min-height:48px!important}
+ .gallery-checkout{min-height:52px!important}
+
+ /* Footer */
+ .site-footer{min-height:0!important}
+}
