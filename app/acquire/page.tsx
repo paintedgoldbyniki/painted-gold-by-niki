@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type UIEvent } from "react";
 import { herWorks } from "../her-data";
 import { SiteNav } from "../site-components";
 
@@ -15,6 +15,7 @@ export default function Acquire(){
  const [entered,setEntered]=useState(true);
  const [room,setRoom]=useState(0);
  const [mobileWork,setMobileWork]=useState(0);
+ const mobileGalleryRef=useRef<HTMLDivElement>(null);
  const [selected,setSelected]=useState<number|null>(null);
  const [mode,setMode]=useState<"print"|"original">("print");
  const [variant,setVariant]=useState("medium");
@@ -35,8 +36,19 @@ export default function Acquire(){
  }
  const openWork=(index:number)=>{setSelected(index);setVariant("medium");setCheckoutError("")};
  const move=(direction:number)=>{
-  if(typeof window!=="undefined"&&window.matchMedia("(max-width: 850px)").matches){const next=(mobileWork+direction+herWorks.length)%herWorks.length;setMobileWork(next);setRoom(Math.floor(next/3));return}
+  if(typeof window!=="undefined"&&window.matchMedia("(max-width: 850px)").matches){
+   const next=(mobileWork+direction+herWorks.length)%herWorks.length;
+   setMobileWork(next);setRoom(Math.floor(next/3));
+   mobileGalleryRef.current?.querySelector<HTMLElement>(`[data-mobile-artwork="${next}"]`)?.scrollIntoView({behavior:"smooth",inline:"center",block:"nearest"});
+   return
+  }
   setRoom(current=>(current+direction+rooms.length)%rooms.length)
+ };
+ const syncMobileArtwork=(event:UIEvent<HTMLDivElement>)=>{
+  const track=event.currentTarget;const center=track.scrollLeft+track.clientWidth/2;
+  let closest=0;let distance=Number.POSITIVE_INFINITY;
+  Array.from(track.children).forEach((child,index)=>{const element=child as HTMLElement;const delta=Math.abs(element.offsetLeft+element.offsetWidth/2-center);if(delta<distance){distance=delta;closest=index}});
+  if(closest!==mobileWork){setMobileWork(closest);setRoom(Math.floor(closest/3))}
  };
  const chooseRoom=(index:number)=>{setRoom(index);setMobileWork(index*3)};
 
@@ -74,6 +86,13 @@ export default function Acquire(){
       <i>+</i>
      </button>
     })}
+   </div>
+   <div className="gallery-wall-mobile" ref={mobileGalleryRef} onScroll={syncMobileArtwork}>
+    {herWorks.map((work,index)=><button className="gallery-mobile-frame" data-mobile-artwork={index} key={work.no} onClick={()=>openWork(index)} aria-label={`View ${work.title}`}>
+     <span className="gallery-spotlight"/>
+     <span className="gallery-frame-border"><Image src={work.image} alt={work.title} width={1365} height={2048} sizes="76vw"/></span>
+     <span className="gallery-plaque"><b>{work.title}</b><small>{work.power}</small></span>
+    </button>)}
    </div>
 
    <button className="gallery-arrow gallery-prev" onClick={()=>move(-1)} aria-label="Previous room"><span>←</span><small>PREVIOUS ROOM</small></button>
