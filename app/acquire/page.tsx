@@ -13,7 +13,8 @@ const rooms = [
 
 export default function Acquire(){
  const [entered,setEntered]=useState(true);
- const [room,setRoom]=useState(0);\n const [mobileWork,setMobileWork]=useState(0);
+ const [room,setRoom]=useState(0);
+ const [mobileWork,setMobileWork]=useState(0);
  const [selected,setSelected]=useState<number|null>(null);
  const [mode,setMode]=useState<"print"|"original">("print");
  const [variant,setVariant]=useState("medium");
@@ -33,7 +34,11 @@ export default function Acquire(){
   catch(error){setCheckoutError(error instanceof Error?error.message:"Checkout is unavailable.");setOrdering(false)}
  }
  const openWork=(index:number)=>{setSelected(index);setVariant("medium");setCheckoutError("")};
- const move=(direction:number)=>{\n  if(typeof window!=="undefined"&&window.matchMedia("(max-width: 850px)").matches){const next=(mobileWork+direction+herWorks.length)%herWorks.length;setMobileWork(next);setRoom(Math.floor(next/3));return}\n  setRoom(current=>(current+direction+rooms.length)%rooms.length)\n };\n const chooseRoom=(index:number)=>{setRoom(index);setMobileWork(index*3)};
+ const move=(direction:number)=>{
+  if(typeof window!=="undefined"&&window.matchMedia("(max-width: 850px)").matches){const next=(mobileWork+direction+herWorks.length)%herWorks.length;setMobileWork(next);setRoom(Math.floor(next/3));return}
+  setRoom(current=>(current+direction+rooms.length)%rooms.length)
+ };
+ const chooseRoom=(index:number)=>{setRoom(index);setMobileWork(index*3)};
 
  return <main className={`gallery-shop gallery-tone-${rooms[room].tone} gallery-art-light-${mobileWork+1}`}>
   <SiteNav dark/>
