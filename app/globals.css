@@ -851,3 +851,21 @@
 .editorial-strip-copy a{margin-top:25px;border-bottom:1px solid #ae843d;padding-bottom:9px;text-transform:uppercase;letter-spacing:.19em;font-size:10px}
 .artist-about-photo img,.artist-why-image img,.artist-letter-art img{object-fit:cover;width:100%;height:100%;display:block}
 @media(max-width:850px){.editorial-strip{grid-template-columns:1fr}.editorial-strip-image{min-height:0;aspect-ratio:4/3}.editorial-strip-copy{padding:54px 25px 70px}.cinema-hero-bg{object-position:58% center}}
+
+/* Editorial artist portrait — gallery-book inspired composition */
+.artist-about-hero{position:relative;overflow:hidden}
+.artist-about-copy{position:relative;z-index:2}
+.artist-about-copy h1{letter-spacing:-.045em}
+.artist-signature{font-family:Georgia,serif;font-size:12px;letter-spacing:.23em;color:#9e7d43;margin:20px 0 28px}
+.artist-signature i{font-style:normal;margin:0 12px}
+.artist-about-photo{overflow:hidden;position:relative}
+.artist-about-photo img{filter:saturate(.92);transition:transform 1.1s ease}
+.artist-about-photo:hover img{transform:scale(1.025)}
+.artist-about-photo figcaption{z-index:2}
+.artist-editorial-banner{background:#24251d;color:#f5eee2;padding:clamp(50px,9vw,130px) 6vw;display:grid;grid-template-columns:.38fr 1fr;column-gap:6vw;align-items:start}
+.artist-editorial-banner>span{font-size:10px;letter-spacing:.3em;color:#c4a772}
+.artist-editorial-banner>p{font:400 clamp(32px,4.8vw,70px)/1.13 Georgia,serif;max-width:900px;margin:0 0 65px}
+.artist-editorial-image{grid-column:2;max-width:850px;aspect-ratio:1.65;overflow:hidden}
+.artist-editorial-image img{width:100%;height:100%;object-fit:cover;display:block}
+@media(max-width:850px){.artist-editorial-banner{display:flex;flex-direction:column;padding:55px 22px 65px}.artist-editorial-banner>p{font-size:clamp(32px,9vw,52px);margin:35px 0}.artist-editorial-image{width:100%;aspect-ratio:4/5}}
+@media(prefers-reduced-motion:reduce){.artist-about-photo img{transition:none}}
