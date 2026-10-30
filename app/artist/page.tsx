@@ -10,19 +10,21 @@ export default function Artist() {
 
       <section className="artist-about-hero">
         <div className="artist-about-copy">
-          <span>ABOUT THE ARTIST · VANCOUVER</span>
-          <h1>This is<br /><em>Niki.</em></h1>
+          <span>THE ARTIST BEHIND THE GOLD · VANCOUVER</span>
+          <h1>Art begins<br />with <em>her.</em></h1><div className="artist-signature">NIKI <i>—</i> PAINTED GOLD</div>
           <p className="artist-about-lead">An artist drawn to the stories women carry—and to the beauty, strength and identity that can live inside a single portrait.</p>
           <a href="#meet-niki">Meet the artist</a>
         </div>
         <figure className="artist-about-photo">
           <Image src="/editorial/artist-intro.webp" alt="Niki with three paintings in the HER collection" width={1638} height={2048} sizes="(max-width:850px) 100vw, 48vw" priority />
           <figcaption>
-            <span>ARTIST PORTRAIT</span>
+            <span>IN HER ELEMENT</span>
             <b>NIKI · ARTIST & FOUNDER</b>
           </figcaption>
         </figure>
       </section>
+
+      <section className="artist-editorial-banner"><span>WOMEN · IDENTITY · CULTURE · GOLD</span><p>“Every canvas is a conversation between the woman we see and the strength she carries.”</p><div className="artist-editorial-image"><Image src="/editorial/gallery-editorial.webp" alt="Niki with her paintings displayed in warm light" width={1800} height={1200} sizes="(max-width:850px) 100vw, 60vw"/></div></section>
 
       <section className="meet-niki" id="meet-niki">
         <aside>
@@ -64,7 +66,7 @@ export default function Artist() {
         </div>
         <div className="artist-letter-copy">
           <span>A NOTE FROM NIKI</span>
-          <p>“My hope is that you do not only see a painting. I hope you recognise a feeling, a memory, a woman you know—or perhaps a part of yourself.”</p>
+          <p>My hope is that you do not only see a painting. I hope you recognise a feeling, a memory, a woman you know—or perhaps a part of yourself.</p>
           <i>— Niki</i>
 
         </div>
