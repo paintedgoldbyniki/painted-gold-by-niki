@@ -974,3 +974,22 @@
  .pg-cover-top {top:16px;left:16px;right:16px;text-shadow:0 1px 6px #1c1714;z-index:3}
  .pg-cover-bottom {display:none}
 }
+
+/* Purpose-built mobile artist cover — spacious and portrait-first. */
+.pg-cover-mobile-photo{display:none!important}
+@media(max-width:600px){
+.pg-cover{background:#efe7db!important;color:#28251e!important}
+.pg-cover-image{aspect-ratio:3/4;max-height:66svh;background:#d8c7b0}
+.pg-cover-image .pg-cover-desktop-photo{display:none!important}
+.pg-cover-image .pg-cover-mobile-photo{display:block!important;object-fit:cover!important;object-position:center 30%!important}
+.pg-cover-gradient{display:none!important}
+.pg-cover-top{color:#fff;top:12px;left:15px;right:15px;font-size:8px}
+.pg-cover-title{background:#efe7db!important;color:#28251e!important;text-align:center;padding:29px 22px 44px}
+.pg-cover-title>span{color:#91703a;letter-spacing:.20em;font-size:9px}
+.pg-cover-title h1{font:400 clamp(100px,29vw,150px)/.85 Georgia,serif;margin:17px 0 18px;letter-spacing:-.09em}
+.pg-cover-title h1 span{color:#b18a4c}
+.pg-cover-title>div{display:flex;flex-direction:column;align-items:center;gap:18px}
+.pg-cover-title p{font:17px/1.45 Georgia,serif;margin:0}
+.pg-cover-title a{font:10px sans-serif;letter-spacing:.16em;border:1px solid #9d814f;padding:16px 22px;white-space:normal}
+.pg-cover-title a b{margin-left:20px}
+}
