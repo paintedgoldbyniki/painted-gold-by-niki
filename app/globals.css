@@ -957,3 +957,20 @@
 
 .pg-artist-crosslink{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:6vw;padding:110px 6vw;background:#e5dbcb;color:#28251e}.pg-artist-crosslink>div>span{font:11px sans-serif;letter-spacing:.2em;color:#987746}.pg-artist-crosslink h2{font:400 clamp(56px,6vw,104px)/.95 Georgia,serif;letter-spacing:-.06em;margin:30px 0}.pg-artist-crosslink h2 em{color:#a8874d;font-weight:400}.pg-artist-crosslink p{font:18px/1.7 Georgia,serif}.pg-artist-crosslink a{display:inline-block;margin-top:20px;border-bottom:1px solid #a8874d;padding-bottom:10px;font:11px sans-serif;letter-spacing:.15em}.pg-artist-crosslink>img{width:100%;height:620px;object-fit:cover}
 @media(max-width:850px){.pg-artist-crosslink{grid-template-columns:1fr;padding:80px 22px}.pg-artist-crosslink>img{height:auto;aspect-ratio:4/5}.pg-artist-crosslink h2{font-size:56px}}
+
+/* Mobile portrait-first hero: preserve Niki and her paintings instead of cropping her out. */
+@media (max-width: 600px) {
+ .pg-cover {height:auto;min-height:0;display:flex;flex-direction:column;background:#29251d}
+ .pg-cover-image {position:relative;inset:auto;width:100%;height:auto;aspect-ratio:4/5;overflow:hidden}
+ .pg-cover-image img {object-fit:cover !important;object-position:45% 18% !important}
+ .pg-cover-gradient {display:none}
+ .pg-cover-title {position:relative;left:auto;right:auto;bottom:auto;padding:28px 22px 35px;background:#29251d}
+ .pg-cover-title>span {font-size:9px;letter-spacing:.16em}
+ .pg-cover-title h1 {font-size:clamp(100px,27vw,160px);margin:17px 0 24px}
+ .pg-cover-title>div {display:flex;justify-content:space-between;align-items:end;gap:18px}
+ .pg-cover-title p {font-size:16px;line-height:1.3;margin:0}
+ .pg-cover-title a {font-size:9px;white-space:nowrap;margin:0}
+ .pg-cover-title a b {margin-left:6px}
+ .pg-cover-top {top:16px;left:16px;right:16px;text-shadow:0 1px 6px #1c1714;z-index:3}
+ .pg-cover-bottom {display:none}
+}
