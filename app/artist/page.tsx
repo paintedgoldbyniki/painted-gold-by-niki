@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { herWorks } from "../her-data";
 import { SiteFooter, SiteNav } from "../site-components";
@@ -15,10 +16,10 @@ export default function Artist() {
           <a href="#meet-niki">Meet the artist</a>
         </div>
         <figure className="artist-about-photo">
-          <img src={herWorks[3].image} alt="A placeholder for Niki's future artist portrait" />
+          <Image src="/editorial/artist-intro.webp" alt="Niki with three paintings in the HER collection" width={1638} height={2048} sizes="(max-width:850px) 100vw, 48vw" priority />
           <figcaption>
             <span>ARTIST PORTRAIT</span>
-            <b>YOUR PHOTO WILL LIVE HERE</b>
+            <b>NIKI · ARTIST & FOUNDER</b>
           </figcaption>
         </figure>
       </section>
@@ -37,7 +38,7 @@ export default function Artist() {
 
       <section className="artist-why">
         <div className="artist-why-image">
-          <img src={herWorks[0].image} alt="Portrait artwork by Niki" />
+          <Image src="/editorial/artist-process.webp" alt="Niki painting at her easel in warm studio light" width={1365} height={2048} sizes="(max-width:850px) 100vw, 48vw" />
           <span>A DETAIL FROM HER WORLD</span>
         </div>
         <div className="artist-why-copy">
@@ -59,13 +60,13 @@ export default function Artist() {
 
       <section className="artist-letter">
         <div className="artist-letter-art">
-          <img src={herWorks[4].image} alt="Her Roots by Niki" />
+          <Image src="/editorial/artist-closeup.webp" alt="Niki smiling beside her portrait artwork" width={1568} height={2048} sizes="(max-width:850px) 100vw, 48vw" />
         </div>
         <div className="artist-letter-copy">
           <span>A NOTE FROM NIKI</span>
           <p>“My hope is that you do not only see a painting. I hope you recognise a feeling, a memory, a woman you know—or perhaps a part of yourself.”</p>
           <i>— Niki</i>
-          <small>A personal video from the artist can be added here later.</small>
+
         </div>
       </section>
 
