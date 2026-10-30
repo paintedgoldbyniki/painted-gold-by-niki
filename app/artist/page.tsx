@@ -16,15 +16,15 @@ export default function Artist() {
           <a href="#meet-niki">Meet the artist</a>
         </div>
         <figure className="artist-about-photo">
-          <Image src="/editorial/artist-intro.webp" alt="Niki with three paintings in the HER collection" width={1638} height={2048} sizes="(max-width:850px) 100vw, 48vw" priority />
+          <Image src={herWorks[3].image} alt="A portrait from the HER collection" width={1638} height={2048} sizes="(max-width:850px) 100vw, 48vw" priority />
           <figcaption>
             <span>IN HER ELEMENT</span>
-            <b>NIKI · ARTIST & FOUNDER</b>
+            <b>ARTIST PORTRAIT COMING SOON</b>
           </figcaption>
         </figure>
       </section>
 
-      <section className="artist-editorial-banner"><span>WOMEN · IDENTITY · CULTURE · GOLD</span><p>Every canvas holds more than a portrait. It holds a story.</p><div className="artist-editorial-image"><Image src="/editorial/gallery-editorial.webp" alt="Niki with her paintings displayed in warm light" width={1800} height={1200} sizes="(max-width:850px) 100vw, 60vw"/></div></section>
+      <section className="artist-editorial-banner"><span>WOMEN · IDENTITY · CULTURE · GOLD</span><p>Every canvas holds more than a portrait. It holds a story.</p><div className="artist-editorial-image"><Image src={herWorks[2].image} alt="Her Allure artwork" width={1800} height={1200} sizes="(max-width:850px) 100vw, 60vw"/></div></section>
 
       <section className="meet-niki" id="meet-niki">
         <aside>
@@ -40,7 +40,7 @@ export default function Artist() {
 
       <section className="artist-why">
         <div className="artist-why-image">
-          <Image src="/editorial/artist-process.webp" alt="Niki painting at her easel in warm studio light" width={1365} height={2048} sizes="(max-width:850px) 100vw, 48vw" />
+          <Image src={herWorks[0].image} alt="Her Grace portrait artwork" width={1365} height={2048} sizes="(max-width:850px) 100vw, 48vw" />
           <span>A DETAIL FROM HER WORLD</span>
         </div>
         <div className="artist-why-copy">
@@ -62,7 +62,7 @@ export default function Artist() {
 
       <section className="artist-letter">
         <div className="artist-letter-art">
-          <Image src="/editorial/artist-closeup.webp" alt="Niki smiling beside her portrait artwork" width={1568} height={2048} sizes="(max-width:850px) 100vw, 48vw" />
+          <Image src={herWorks[4].image} alt="Her Roots portrait artwork" width={1568} height={2048} sizes="(max-width:850px) 100vw, 48vw" />
         </div>
         <div className="artist-letter-copy">
           <span>A NOTE FROM NIKI</span>
