@@ -903,3 +903,22 @@
 .kf-newsletter{padding:100px 7vw;display:grid;grid-template-columns:1fr .8fr;gap:6vw;align-items:center;background:#272820;color:#f2eadb}.kf-newsletter>div>span{font-size:10px;letter-spacing:.24em;color:#d0aa6d}.kf-newsletter h2{font-size:clamp(46px,5.7vw,86px)}.kf-newsletter p{font:16px/1.65 Georgia,serif;color:#d2c9b7}.kf-newsletter form label{font-size:10px;letter-spacing:.2em}.kf-newsletter form>div{display:flex;border-bottom:1px solid #b4a38c;margin-top:22px}.kf-newsletter input{background:transparent;border:0;outline:0;color:white;padding:18px 0;font:18px Georgia,serif;flex:1;min-width:0}.kf-newsletter button{background:none;border:0;color:#d5b67a;font-size:30px;padding:0 8px;cursor:pointer}.kf-newsletter form small{display:block;margin-top:17px;color:#c6bba9;line-height:1.6}
 @media(max-width:800px){.kf-hero,.kf-hero-cover{min-height:82svh}.kf-hero-photo img{object-position:62% center}.kf-hero-cover{padding:16vh 25px 10vh}.kf-hero-cover h1{font-size:clamp(95px,25vw,150px)}.kf-hero-cover p{font-size:19px}.kf-hero-corner{display:none}.kf-marquee{font-size:8px}.kf-intro{padding:100px 25px}.kf-intro h2{font-size:clamp(46px,11vw,75px)}.kf-feature-grid{grid-template-columns:1fr;padding:0 18px 80px;gap:34px}.kf-feature-image,.kf-feature-large .kf-feature-image{aspect-ratio:4/4.5}.kf-artist-teaser{grid-template-columns:1fr}.kf-artist-photo{min-height:0;aspect-ratio:4/5}.kf-artist-text{padding:80px 26px}.kf-exhibition{padding:85px 20px}.kf-exhibition-grid{grid-template-columns:1fr;gap:50px}.kf-exhibition-grid a>div{aspect-ratio:4/4.5}.kf-newsletter{grid-template-columns:1fr;padding:90px 25px;gap:55px}.kf-newsletter h2{font-size:52px}}
 @media(prefers-reduced-motion:reduce){.kf-feature-image img,.kf-exhibition-grid img{transition:none}}
+
+/* Consistent editorial identity for the interior pages and gallery */
+.site-nav.luxury-nav{min-height:88px;padding-left:4vw;padding-right:4vw}
+.site-nav.luxury-nav .compact-brand span{font-family:Georgia,serif;letter-spacing:.20em}
+.site-nav.luxury-nav .compact-brand small{color:#a8874d}
+.site-nav.luxury-nav nav button{text-transform:uppercase;letter-spacing:.14em;font-size:10px}
+.artist-page,.collection-cinema{font-family:Georgia,serif}
+.artist-about-hero{background:#f3eee5}
+.artist-about-copy h1,.artist-why h2,.meet-niki h2,.artist-gold-note h2,.artist-about-closing h2{letter-spacing:-.045em}
+.artist-about-copy>span,.meet-niki aside span,.artist-why-copy>span,.artist-gold-note>span{letter-spacing:.18em}
+.artist-about-photo img{object-fit:cover}
+.collection-prologue,.collection-chapter{background:#f3eee5}
+.collection-prologue h2,.chapter-narrative h2{letter-spacing:-.05em}
+.chapter-actions a{letter-spacing:.12em}
+.gallery-shop .gallery-order-brand b{font-family:Georgia,serif;letter-spacing:.18em}
+.gallery-shop .gallery-plaque b{font-family:Georgia,serif;font-weight:400}
+.gallery-shop .gallery-modal-info h2{font-family:Georgia,serif;letter-spacing:-.04em}
+.site-footer{font-family:Georgia,serif}
+@media(max-width:800px){.site-nav.luxury-nav{min-height:70px;padding-left:18px;padding-right:18px}.site-nav .compact-brand span{font-size:15px}.gallery-shop .gallery-plaque b{font-size:12px}}
