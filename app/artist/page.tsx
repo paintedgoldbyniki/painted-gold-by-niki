@@ -24,7 +24,7 @@ export default function Artist() {
         </figure>
       </section>
 
-      <section className="artist-editorial-banner"><span>WOMEN · IDENTITY · CULTURE · GOLD</span><p>“Every canvas is a conversation between the woman we see and the strength she carries.”</p><div className="artist-editorial-image"><Image src="/editorial/gallery-editorial.webp" alt="Niki with her paintings displayed in warm light" width={1800} height={1200} sizes="(max-width:850px) 100vw, 60vw"/></div></section>
+      <section className="artist-editorial-banner"><span>WOMEN · IDENTITY · CULTURE · GOLD</span><p>Every canvas holds more than a portrait. It holds a story.</p><div className="artist-editorial-image"><Image src="/editorial/gallery-editorial.webp" alt="Niki with her paintings displayed in warm light" width={1800} height={1200} sizes="(max-width:850px) 100vw, 60vw"/></div></section>
 
       <section className="meet-niki" id="meet-niki">
         <aside>
