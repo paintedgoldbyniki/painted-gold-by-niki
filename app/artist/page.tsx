@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { herWorks } from "../her-data";
 import { SiteFooter, SiteNav } from "../site-components";
@@ -9,19 +10,21 @@ export default function Artist() {
 
       <section className="artist-about-hero">
         <div className="artist-about-copy">
-          <span>ABOUT THE ARTIST · VANCOUVER</span>
-          <h1>This is<br /><em>Niki.</em></h1>
+          <span>THE ARTIST BEHIND THE GOLD · VANCOUVER</span>
+          <h1>Art begins<br />with <em>her.</em></h1><div className="artist-signature">NIKI <i>—</i> PAINTED GOLD</div>
           <p className="artist-about-lead">An artist drawn to the stories women carry—and to the beauty, strength and identity that can live inside a single portrait.</p>
           <a href="#meet-niki">Meet the artist</a>
         </div>
         <figure className="artist-about-photo">
-          <img src={herWorks[3].image} alt="A placeholder for Niki's future artist portrait" />
+          <Image src={herWorks[3].image} alt="A portrait from the HER collection" width={1638} height={2048} sizes="(max-width:850px) 100vw, 48vw" priority />
           <figcaption>
-            <span>ARTIST PORTRAIT</span>
-            <b>YOUR PHOTO WILL LIVE HERE</b>
+            <span>IN HER ELEMENT</span>
+            <b>ARTIST PORTRAIT COMING SOON</b>
           </figcaption>
         </figure>
       </section>
+
+      <section className="artist-editorial-banner"><span>WOMEN · IDENTITY · CULTURE · GOLD</span><p>Every canvas holds more than a portrait. It holds a story.</p><div className="artist-editorial-image"><Image src={herWorks[2].image} alt="Her Allure artwork" width={1800} height={1200} sizes="(max-width:850px) 100vw, 60vw"/></div></section>
 
       <section className="meet-niki" id="meet-niki">
         <aside>
@@ -37,7 +40,7 @@ export default function Artist() {
 
       <section className="artist-why">
         <div className="artist-why-image">
-          <img src={herWorks[0].image} alt="Portrait artwork by Niki" />
+          <Image src={herWorks[0].image} alt="Her Grace portrait artwork" width={1365} height={2048} sizes="(max-width:850px) 100vw, 48vw" />
           <span>A DETAIL FROM HER WORLD</span>
         </div>
         <div className="artist-why-copy">
@@ -59,13 +62,13 @@ export default function Artist() {
 
       <section className="artist-letter">
         <div className="artist-letter-art">
-          <img src={herWorks[4].image} alt="Her Roots by Niki" />
+          <Image src={herWorks[4].image} alt="Her Roots portrait artwork" width={1568} height={2048} sizes="(max-width:850px) 100vw, 48vw" />
         </div>
         <div className="artist-letter-copy">
           <span>A NOTE FROM NIKI</span>
-          <p>“My hope is that you do not only see a painting. I hope you recognise a feeling, a memory, a woman you know—or perhaps a part of yourself.”</p>
+          <p>My hope is that you do not only see a painting. I hope you recognise a feeling, a memory, a woman you know—or perhaps a part of yourself.</p>
           <i>— Niki</i>
-          <small>A personal video from the artist can be added here later.</small>
+
         </div>
       </section>
 
