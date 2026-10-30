@@ -72,6 +72,7 @@ export default function Artist() {
         </div>
       </section>
 
+      <section className="niki-photo-essay"><div className="niki-photo-essay-head"><span>AN ARTIST'S WORLD</span><h2>Portraits of the <em>person behind the portraits.</em></h2></div><div className="niki-photo-essay-grid"><figure><Image src="/editorial/collection-editorial.webp" alt="Niki photographed beside her original paintings" fill sizes="(max-width:850px) 100vw, 50vw"/><figcaption>HER, IN THE STUDIO · 01</figcaption></figure><figure><Image src="/editorial/home-hero.webp" alt="Niki with the HER collection in warm studio light" fill sizes="(max-width:850px) 100vw, 50vw"/><figcaption>THE MAKING OF HER · 02</figcaption></figure></div></section>
       <section className="artist-personal-details">
         <div>
           <span>BASED IN</span>
@@ -96,7 +97,8 @@ export default function Artist() {
         </div>
       </section>
 
-      <StudioNewsletter />\n      <SiteFooter />
+      <StudioNewsletter />
+      <SiteFooter />
     </main>
   );
 }
