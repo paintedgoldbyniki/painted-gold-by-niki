@@ -16,15 +16,15 @@ export default function Artist() {
           <a href="#meet-niki">Meet the artist</a>
         </div>
         <figure className="artist-about-photo">
-          <Image src={herWorks[3].image} alt="A portrait from the HER collection" width={1638} height={2048} sizes="(max-width:850px) 100vw, 48vw" priority />
+          <Image src="/editorial/artist-intro.webp" alt="Niki photographed with her HER collection" width={1638} height={2048} sizes="(max-width:850px) 100vw, 48vw" priority />
           <figcaption>
             <span>IN HER ELEMENT</span>
-            <b>ARTIST PORTRAIT COMING SOON</b>
+            <b>NIKI · ARTIST & FOUNDER</b>
           </figcaption>
         </figure>
       </section>
 
-      <section className="artist-editorial-banner"><span>WOMEN · IDENTITY · CULTURE · GOLD</span><p>Every canvas holds more than a portrait. It holds a story.</p><div className="artist-editorial-image"><Image src={herWorks[2].image} alt="Her Allure artwork" width={1800} height={1200} sizes="(max-width:850px) 100vw, 60vw"/></div></section>
+      <section className="artist-editorial-banner"><span>WOMEN · IDENTITY · CULTURE · GOLD</span><p>Every canvas holds more than a portrait. It holds a story.</p><div className="artist-editorial-image"><Image src="/editorial/gallery-editorial.webp" alt="Niki and her paintings in the studio" width={1800} height={1200} sizes="(max-width:850px) 100vw, 60vw"/></div></section>
 
       <section className="meet-niki" id="meet-niki">
         <aside>
@@ -40,7 +40,7 @@ export default function Artist() {
 
       <section className="artist-why">
         <div className="artist-why-image">
-          <Image src={herWorks[0].image} alt="Her Grace portrait artwork" width={1365} height={2048} sizes="(max-width:850px) 100vw, 48vw" />
+          <Image src="/editorial/artist-process.webp" alt="Niki working on her paintings" width={1365} height={2048} sizes="(max-width:850px) 100vw, 48vw" />
           <span>A DETAIL FROM HER WORLD</span>
         </div>
         <div className="artist-why-copy">
