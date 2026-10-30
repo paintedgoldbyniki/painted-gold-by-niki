@@ -922,3 +922,11 @@
 .gallery-shop .gallery-modal-info h2{font-family:Georgia,serif;letter-spacing:-.04em}
 .site-footer{font-family:Georgia,serif}
 @media(max-width:800px){.site-nav.luxury-nav{min-height:70px;padding-left:18px;padding-right:18px}.site-nav .compact-brand span{font-size:15px}.gallery-shop .gallery-plaque b{font-size:12px}}
+
+.kf-newsletter-overlay{position:fixed;inset:0;z-index:9999;background:rgba(20,21,15,.62);display:grid;place-items:center;padding:20px;backdrop-filter:blur(5px)}
+.kf-newsletter-pop{position:relative;width:min(950px,100%);max-height:90svh;overflow-y:auto;box-shadow:0 25px 90px rgba(0,0,0,.25)}
+.kf-newsletter-pop .kf-newsletter{padding:65px 54px;gap:35px;grid-template-columns:1fr}
+.kf-newsletter-pop .kf-newsletter h2{font-size:clamp(42px,5vw,64px);margin:14px 0}
+.kf-newsletter-pop .kf-newsletter p{margin-bottom:0}
+.kf-popup-close{position:absolute;right:16px;top:12px;z-index:3;font:32px Georgia,serif;color:#f2eadb;background:none;border:0;cursor:pointer;padding:6px 10px}
+@media(max-width:800px){.kf-newsletter-pop .kf-newsletter{padding:62px 26px 36px}.kf-newsletter-pop .kf-newsletter h2{font-size:42px}}
