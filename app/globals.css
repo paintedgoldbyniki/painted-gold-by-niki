@@ -838,3 +838,16 @@
  .gallery-wall-mobile{top:130px;bottom:112px;padding-inline:14vw;scroll-padding-inline:14vw}
  .gallery-mobile-frame{flex-basis:72vw;width:72vw;height:min(43dvh,365px)}
 }
+
+/* HER photography editorial — original photographs, responsive and accessible */
+.cinema-hero-bg{object-fit:cover;object-position:center 40%}
+.editorial-strip{display:grid;grid-template-columns:1.08fr .92fr;background:#e9dfcf;min-height:620px}
+.editorial-strip-image{min-height:520px;overflow:hidden}
+.editorial-strip-image img{width:100%;height:100%;object-fit:cover;display:block}
+.editorial-strip-copy{padding:clamp(36px,7vw,110px);display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+.editorial-strip-copy>span{font-size:10px;letter-spacing:.25em;color:#987432}
+.editorial-strip-copy h2{font:400 clamp(43px,5vw,78px)/1.04 Georgia,serif;margin:24px 0}
+.editorial-strip-copy p{max-width:440px;line-height:1.8;color:#575044}
+.editorial-strip-copy a{margin-top:25px;border-bottom:1px solid #ae843d;padding-bottom:9px;text-transform:uppercase;letter-spacing:.19em;font-size:10px}
+.artist-about-photo img,.artist-why-image img,.artist-letter-art img{object-fit:cover;width:100%;height:100%;display:block}
+@media(max-width:850px){.editorial-strip{grid-template-columns:1fr}.editorial-strip-image{min-height:0;aspect-ratio:4/3}.editorial-strip-copy{padding:54px 25px 70px}.cinema-hero-bg{object-position:58% center}}
