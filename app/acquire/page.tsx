@@ -23,7 +23,7 @@ export default function Acquire(){
  const [checkoutError,setCheckoutError]=useState("");
  const sizes=[{id:"small",label:"12 × 16 in",price:"$95"},{id:"medium",label:"18 × 24 in",price:"$165"},{id:"large",label:"24 × 32 in",price:"$245"}];
 
- useEffect(()=>{window.scrollTo(0,0);if(location.hash==="#originals"){setMode("original");setEntered(true)}},[]);
+ useEffect(()=>{window.scrollTo(0,0);if(location.hash==="#originals"){setMode("original");setEntered(true)} else if(location.hash.startsWith("#work-")){const no=location.hash.slice(6);const found=herWorks.findIndex(w=>w.no===no);if(found>=0){setSelected(found);setRoom(Math.floor(found/3));setMobileWork(found)}}},[]);
  useEffect(()=>{
   const handle=(event:KeyboardEvent)=>{if(selected!==null&&event.key==="Escape")setSelected(null);else if(entered&&event.key==="ArrowRight")setRoom(v=>(v+1)%rooms.length);else if(entered&&event.key==="ArrowLeft")setRoom(v=>(v+rooms.length-1)%rooms.length)};
   window.addEventListener("keydown",handle);return()=>window.removeEventListener("keydown",handle)
@@ -34,7 +34,7 @@ export default function Acquire(){
   try{const response=await fetch("/api/checkout",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({artworkId:herWorks[selected].slug,variantId:variant,quantity:1})});const data=await response.json();if(!response.ok||!data.url)throw new Error(data.error||"Checkout is unavailable.");window.location.href=data.url}
   catch(error){setCheckoutError(error instanceof Error?error.message:"Checkout is unavailable.");setOrdering(false)}
  }
- const openWork=(index:number)=>{setSelected(index);setVariant("medium");setCheckoutError("")};
+ const openWork=(index:number)=>{setSelected(index);setVariant("medium");setCheckoutError("");window.history.replaceState(null,"",`#work-${herWorks[index].no}`)};
  const move=(direction:number)=>{
   if(typeof window!=="undefined"&&window.matchMedia("(max-width: 850px)").matches){
    const next=(mobileWork+direction+herWorks.length)%herWorks.length;
@@ -45,12 +45,12 @@ export default function Acquire(){
   setRoom(current=>(current+direction+rooms.length)%rooms.length)
  };
  const syncMobileArtwork=(event:UIEvent<HTMLDivElement>)=>{
-  const track=event.currentTarget;const center=track.scrollLeft+track.clientWidth/2;
+  const track=event.currentTarget;const center=track.getBoundingClientRect().left+track.clientWidth/2;
   let closest=0;let distance=Number.POSITIVE_INFINITY;
-  Array.from(track.children).forEach((child,index)=>{const element=child as HTMLElement;const delta=Math.abs(element.offsetLeft+element.offsetWidth/2-center);if(delta<distance){distance=delta;closest=index}});
+  Array.from(track.children).forEach((child,index)=>{const element=child as HTMLElement;const delta=Math.abs(element.getBoundingClientRect().left+element.offsetWidth/2-center);if(delta<distance){distance=delta;closest=index}});
   if(closest!==mobileWork){setMobileWork(closest);setRoom(Math.floor(closest/3))}
  };
- const chooseRoom=(index:number)=>{setRoom(index);setMobileWork(index*3)};
+ const chooseRoom=(index:number)=>{setRoom(index);setMobileWork(index*3);mobileGalleryRef.current?.querySelector<HTMLElement>(`[data-mobile-artwork="${index*3}"]`)?.scrollIntoView({behavior:"smooth",inline:"center",block:"nearest"})};
 
  return <main className={`gallery-shop gallery-tone-${rooms[room].tone} gallery-art-light-${mobileWork+1}`}>
   <SiteNav dark/>
@@ -95,8 +95,8 @@ export default function Acquire(){
     </button>)}
    </div>
 
-   <button className="gallery-arrow gallery-prev" onClick={()=>move(-1)} aria-label="Previous room"><span>←</span><small>PREVIOUS ROOM</small></button>
-   <button className="gallery-arrow gallery-next" onClick={()=>move(1)} aria-label="Next room"><small>NEXT ROOM</small><span>→</span></button>
+   <button className="gallery-arrow gallery-prev" onClick={()=>move(-1)} aria-label="Previous artwork or room"><span>←</span><small>PREVIOUS ROOM</small></button>
+   <button className="gallery-arrow gallery-next" onClick={()=>move(1)} aria-label="Next artwork or room"><small>NEXT ROOM</small><span>→</span></button>
 
    <div className="gallery-map">
     {rooms.map((item,index)=><button key={item.name} className={room===index?"active":""} onClick={()=>chooseRoom(index)}><span>0{index+1}</span><i/></button>)}
@@ -105,7 +105,7 @@ export default function Acquire(){
   </section>}
 
   {selected!==null&&<div className="gallery-art-modal" role="dialog" aria-modal="true" aria-label={herWorks[selected].title}>
-   <header className="gallery-order-nav"><button onClick={()=>setSelected(null)}>← BACK TO GALLERY</button><a href="/" className="gallery-order-brand"><b>PAINTED GOLD</b><small>BY NIKI</small></a><nav><a href="/collection">COLLECTION</a><a href="/artist">ARTIST</a><button onClick={()=>setSelected(null)}>GALLERY</button></nav></header>
+   <header className="gallery-order-nav"><button onClick={()=>{setSelected(null);window.history.replaceState(null,"","/acquire")}}>← BACK TO GALLERY</button><a href="/" className="gallery-order-brand"><b>PAINTED GOLD</b><small>BY NIKI</small></a><nav><a href="/collection">COLLECTION</a><a href="/artist">ARTIST</a><button onClick={()=>setSelected(null)}>GALLERY</button></nav></header>
    <div className="gallery-modal-image"><Image src={herWorks[selected].image} alt={herWorks[selected].title} width={1365} height={2048} sizes="(max-width:850px) 100vw, 52vw"/><span>{herWorks[selected].no} / 09</span></div>
    <div className="gallery-modal-info">
     <div className="gallery-modal-mode"><button className={mode==="print"?"active":""} onClick={()=>setMode("print")}>FINE-ART PRINT</button><button className={mode==="original"?"active":""} onClick={()=>setMode("original")}>ORIGINAL</button></div>
