@@ -85,6 +85,7 @@ export default function Collection() {
         ))}
       </section>
 
+      <section className="niki-collection-behind"><div><span>BEHIND THE EXHIBITION</span><h2>Meet the artist<br/>behind <em>HER.</em></h2><p>Every work begins with a moment, a story and Niki's eye for the gold within.</p><Link href="/artist">DISCOVER HER WORLD ↗</Link></div><figure><Image src="/editorial/artist-intro.webp" alt="Niki with the paintings from HER" fill sizes="(max-width:850px) 100vw, 48vw"/><figcaption>PAINTED GOLD BY NIKI · VANCOUVER</figcaption></figure></section>
       <section className="collection-gold-epilogue">
         <span>THE THREAD BETWEEN THEM</span>
         <h2>Gold is not placed<br />upon her.</h2>
@@ -95,7 +96,8 @@ export default function Collection() {
         </div>
       </section>
 
-      <StudioNewsletter />\n      <SiteFooter />
+      <StudioNewsletter />
+      <SiteFooter />
     </main>
   );
 }
