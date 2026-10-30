@@ -6,8 +6,8 @@ export default function OrderSuccess() {
     <SiteNav dark />
     <section>
       <span>ORDER RECEIVED</span>
-      <h1>Your edition is now in motion.</h1>
-      <p>A confirmation receipt has been sent to your email. Your print will be prepared to order and tracking will follow when it ships.</p>
+      <h1>Thank you for your order.</h1>
+      <p>If your payment completed successfully, Stripe will email your payment receipt. The studio will confirm fulfilment and shipping separately. Contact the studio if you need assistance.</p>
       <Link href="/collection">Return to the collection</Link>
     </section><SiteFooter/>
   </main>;
