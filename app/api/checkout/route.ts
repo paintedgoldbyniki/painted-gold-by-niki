@@ -10,12 +10,19 @@ export async function POST(request: Request) {
     const selection = getPrintSelection(String(artworkId), String(variantId));
     const safeQuantity = Math.max(1, Math.min(5, Number(quantity) || 1));
     if (!selection) return NextResponse.json({ error: "This print option is unavailable." }, { status: 400 });
+    // Do not take payment unless every live fulfilment dependency is configured.
+    if (!selection.variant.prodigiSku || !process.env.PRODIGI_API_KEY || process.env.PRODIGI_ENVIRONMENT !== "live" || !process.env.STRIPE_WEBHOOK_SECRET || !process.env.STRIPE_SECRET_KEY) {
+      return NextResponse.json({ error: "Online print checkout is temporarily unavailable. Please contact the studio to order." }, { status: 503 });
+    }
+    // Pricing excludes shipping; charge must be configured and disclosed at checkout.
+    const shippingCad = Number(process.env.PRINT_SHIPPING_CAD);
+    if (!Number.isFinite(shippingCad) || shippingCad < 0 || !Number.isInteger(shippingCad * 100)) return NextResponse.json({ error: "Shipping is not configured for online checkout yet." }, { status: 503 });
 
     const origin = new URL(request.url).origin;
     const stripe = getStripe();
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
-      integration_identifier: "paintedgold_xqmvkzra",
+      
       customer_creation: "always",
       billing_address_collection: "required",
       shipping_address_collection: { allowed_countries: ["CA", "US", "GB", "AU", "NZ"] },
@@ -32,6 +39,7 @@ export async function POST(request: Request) {
           },
         },
       }],
+      shipping_options: [{ shipping_rate_data: { type: "fixed_amount", display_name: "Standard print shipping", fixed_amount: { amount: Math.round(shippingCad * 100), currency: "cad" } } }],
       metadata: {
         artwork_id: selection.artwork.id,
         artwork_title: selection.artwork.title,
