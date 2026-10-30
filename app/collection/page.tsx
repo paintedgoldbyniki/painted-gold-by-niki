@@ -96,6 +96,7 @@ export default function Collection() {
         </div>
       </section>
 
+      <section className="pg-artist-crosslink"><div><span>THE PERSON BEHIND HER</span><h2>Get to know<br/><em>Niki.</em></h2><p>Explore the stories, craft and purpose that connect these nine paintings.</p><Link href="/artist">MEET THE ARTIST ↗</Link></div><Image src="/editorial/gallery-editorial.webp" alt="Niki with paintings from HER" width={1500} height={1100} sizes="(max-width:800px) 100vw, 50vw"/></section>
       <StudioNewsletter />
       <SiteFooter />
     </main>
