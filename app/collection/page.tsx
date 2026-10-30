@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { herStatement, herWorks } from "../her-data";
-import { SiteFooter, SiteNav } from "../site-components";
+import { SiteFooter, SiteNav, StudioNewsletter } from "../site-components";
 
 export default function Collection() {
   return (
@@ -95,7 +95,7 @@ export default function Collection() {
         </div>
       </section>
 
-      <SiteFooter />
+      <StudioNewsletter />\n      <SiteFooter />
     </main>
   );
 }
