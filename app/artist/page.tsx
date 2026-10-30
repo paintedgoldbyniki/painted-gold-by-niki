@@ -97,6 +97,7 @@ export default function Artist() {
         </div>
       </section>
 
+      <section className="pg-artist-crosslink"><div><span>THE WORLD OF HER</span><h2>From her hands<br/>to <em>your walls.</em></h2><p>Discover the nine portraits that began in Niki's studio.</p><Link href="/collection">EXPLORE THE COLLECTION ↗</Link></div><Image src="/editorial/collection-editorial.webp" alt="Niki with original HER paintings" width={1500} height={1100} sizes="(max-width:800px) 100vw, 50vw"/></section>
       <StudioNewsletter />
       <SiteFooter />
     </main>
