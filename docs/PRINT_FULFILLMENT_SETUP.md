@@ -13,7 +13,8 @@ This branch keeps live checkout disabled until all actual manufacturing prerequi
 - `STRIPE_SECRET_KEY` — Stripe secret for the corresponding test/live environment.
 - `STRIPE_WEBHOOK_SECRET` — signing secret for `/api/webhooks/stripe` (Stripe `checkout.session.completed`, `checkout.session.async_payment_succeeded`).
 - `PRODIGI_API_KEY` — Prodigi sandbox or live key matching `PRODIGI_ENVIRONMENT`.
-- `PRODIGI_ENVIRONMENT` — existing implementation uses `live` for paid orders, anything else routes to the v4 sandbox.
+- `PRODIGI_ENVIRONMENT` — `sandbox` on Preview and `live` only for production after verification.
+- `PRINT_TEST_CHECKOUT_ENABLED` — set `true` for Preview, never Production.
 - `PRODIGI_SKU_12X16`, `PRODIGI_SKU_18X24`, `PRODIGI_SKU_24X32` — Prodigi catalogue SKUs validated for exact sizes and materials.
 - `PRINT_SHIPPING_CAD` — displayed fixed shipping fee, but verify shipping quotes for every allowed destination first; fixed worldwide rate is not suitable without validation.
 
@@ -36,7 +37,7 @@ Each must be an actual full-resolution print file URL accessible to Prodigi, not
 - Keep production unset / disabled. Do not put live keys in a preview branch.
 - Validate the chosen SKUs and the exported print files through Prodigi's sandbox.
 - Confirm the Stripe webhook signature and paid-only condition, verify one webhook retry creates at most one Prodigi order (stable idempotency key), and review Prodigi dashboard for that order.
-- Run Stripe **test mode** checkout and confirm no money changes hands. The existing checkout route intentionally requires `PRODIGI_ENVIRONMENT=live`, so it cannot currently run this integration test end-to-end against Prodigi sandbox. Implement a separate explicit test-mode gate before calling the preview test ready.
+- Run Stripe **test mode** checkout and confirm no money changes hands. The preview checkout now requires `VERCEL_ENV=preview`, `PRINT_TEST_CHECKOUT_ENABLED=true`, `PRODIGI_ENVIRONMENT=sandbox` and a Stripe test-mode secret (`sk_test_`). Configure these only in Vercel Preview, alongside a matching Stripe test webhook and Prodigi sandbox key. No test order has been submitted yet.
 - Verify customer emails, taxes, refunds, shipping quotes (Canada, US, UK, Australia, NZ), file aspect ratios, and tracking before switching production to live.
 
 **Do not merge or enable live checkout until the above checks pass.** Prodigi v4 supports `idempotencyKey` in the JSON order body. Prodigi v5 is recommended for new integrations and would require a separate schema and endpoint migration.
