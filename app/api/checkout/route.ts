@@ -18,6 +18,14 @@ export async function POST(request: Request) {
     const shippingCad = Number(process.env.PRINT_SHIPPING_CAD);
     if (!Number.isFinite(shippingCad) || shippingCad < 0 || !Number.isInteger(shippingCad * 100)) return NextResponse.json({ error: "Shipping is not configured for online checkout yet." }, { status: 503 });
 
+    // Print production must use a dedicated full-resolution asset, never the gallery preview.
+    let assetUrl: URL;
+    try {
+      assetUrl = new URL(selection.artwork.printAssetUrl || "");
+      if (assetUrl.protocol !== "https:" || assetUrl.username || assetUrl.password) throw new Error("Invalid print asset");
+    } catch {
+      return NextResponse.json({ error: "This artwork is not yet ready for printing." }, { status: 503 });
+    }
     const origin = new URL(request.url).origin;
     const stripe = getStripe();
     const session = await stripe.checkout.sessions.create({
@@ -46,7 +54,7 @@ export async function POST(request: Request) {
         variant_id: selection.variant.id,
         variant_label: selection.variant.label,
         prodigi_sku: selection.variant.prodigiSku || "PENDING",
-        asset_url: `${origin}${selection.artwork.image}`,
+        asset_url: assetUrl.toString(),
         quantity: String(safeQuantity),
       },
       success_url: `${origin}/order/success?session_id={CHECKOUT_SESSION_ID}`,
