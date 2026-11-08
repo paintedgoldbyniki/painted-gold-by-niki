@@ -10,8 +10,18 @@ export async function POST(request: Request) {
     const selection = getPrintSelection(String(artworkId), String(variantId));
     const safeQuantity = Math.max(1, Math.min(5, Number(quantity) || 1));
     if (!selection) return NextResponse.json({ error: "This print option is unavailable." }, { status: 400 });
-    // Do not take payment unless every live fulfilment dependency is configured.
-    if (!selection.variant.prodigiSku || !process.env.PRODIGI_API_KEY || process.env.PRODIGI_ENVIRONMENT !== "live" || !process.env.STRIPE_WEBHOOK_SECRET || !process.env.STRIPE_SECRET_KEY) {
+    // Never mix real card payments with simulated print fulfilment.
+    // Test checkout must be explicitly enabled on a Vercel preview deployment only.
+    const stripeKey = process.env.STRIPE_SECRET_KEY || "";
+    const prodigiKey = process.env.PRODIGI_API_KEY || "";
+    const isPreviewTest = process.env.VERCEL_ENV === "preview"
+      && process.env.PRINT_TEST_CHECKOUT_ENABLED === "true"
+      && process.env.PRODIGI_ENVIRONMENT === "sandbox"
+      && stripeKey.startsWith("sk_test_");
+    const isLive = process.env.VERCEL_ENV === "production"
+      && process.env.PRODIGI_ENVIRONMENT === "live"
+      && stripeKey.startsWith("sk_live_");
+    if (!selection.variant.prodigiSku || !prodigiKey || !process.env.STRIPE_WEBHOOK_SECRET || !(isPreviewTest || isLive)) {
       return NextResponse.json({ error: "Online print checkout is temporarily unavailable. Please contact the studio to order." }, { status: 503 });
     }
     // Pricing excludes shipping; charge must be configured and disclosed at checkout.
