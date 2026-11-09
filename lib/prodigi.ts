@@ -36,6 +36,8 @@ export async function submitProdigiOrder(input: ProdigiOrderInput) {
     headers: { "Content-Type": "application/json", "X-API-Key": apiKey },
     body: JSON.stringify({
       merchantReference: input.checkoutSessionId,
+      // Repeated Stripe webhook deliveries must never purchase the same print twice.
+      idempotencyKey: `painted-gold-${input.checkoutSessionId}`,
       shippingMethod: "Budget",
       recipient: {
         name: input.customer.name,

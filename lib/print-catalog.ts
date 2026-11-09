@@ -9,6 +9,7 @@ export type PrintArtwork = {
   id: string;
   title: string;
   image: string;
+  printAssetUrl?: string;
   variants: PrintVariant[];
 };
 
@@ -19,15 +20,15 @@ const portraitSizes: PrintVariant[] = [
 ];
 
 export const printCatalog: PrintArtwork[] = [
-  { id: "her-grace", title: "Her Grace", image: "/artworks/her-grace.jpg", variants: portraitSizes },
-  { id: "her-legacy", title: "Her Legacy", image: "/artworks/her-legacy.jpg", variants: portraitSizes },
-  { id: "her-allure", title: "Her Allure", image: "/artworks/her-allure.jpg", variants: portraitSizes },
-  { id: "her-sovereignty", title: "Her Sovereignty", image: "/artworks/her-sovereignty.jpg", variants: portraitSizes },
-  { id: "her-roots", title: "Her Roots", image: "/artworks/her-roots.jpg", variants: portraitSizes },
-  { id: "her-spirit", title: "Her Spirit", image: "/artworks/her-spirit.jpg", variants: portraitSizes },
-  { id: "her-courage", title: "Her Courage", image: "/artworks/her-courage.jpg", variants: portraitSizes },
-  { id: "her-reverence", title: "Her Reverence", image: "/artworks/her-reverence.jpg", variants: portraitSizes },
-  { id: "her-unapologetic", title: "HER, Unapologetic", image: "/artworks/her-unapologetic.jpg", variants: portraitSizes },
+  { id: "her-grace", title: "Her Grace", image: "/artworks/her-grace.jpg", printAssetUrl: process.env.PRINT_ASSET_HER_GRACE, variants: portraitSizes },
+  { id: "her-legacy", title: "Her Legacy", image: "/artworks/her-legacy.jpg", printAssetUrl: process.env.PRINT_ASSET_HER_LEGACY, variants: portraitSizes },
+  { id: "her-allure", title: "Her Allure", image: "/artworks/her-allure.jpg", printAssetUrl: process.env.PRINT_ASSET_HER_ALLURE, variants: portraitSizes },
+  { id: "her-sovereignty", title: "Her Sovereignty", image: "/artworks/her-sovereignty.jpg", printAssetUrl: process.env.PRINT_ASSET_HER_SOVEREIGNTY, variants: portraitSizes },
+  { id: "her-roots", title: "Her Roots", image: "/artworks/her-roots.jpg", printAssetUrl: process.env.PRINT_ASSET_HER_ROOTS, variants: portraitSizes },
+  { id: "her-spirit", title: "Her Spirit", image: "/artworks/her-spirit.jpg", printAssetUrl: process.env.PRINT_ASSET_HER_SPIRIT, variants: portraitSizes },
+  { id: "her-courage", title: "Her Courage", image: "/artworks/her-courage.jpg", printAssetUrl: process.env.PRINT_ASSET_HER_COURAGE, variants: portraitSizes },
+  { id: "her-reverence", title: "Her Reverence", image: "/artworks/her-reverence.jpg", printAssetUrl: process.env.PRINT_ASSET_HER_REVERENCE, variants: portraitSizes },
+  { id: "her-unapologetic", title: "HER, Unapologetic", image: "/artworks/her-unapologetic.jpg", printAssetUrl: process.env.PRINT_ASSET_HER_UNAPOLOGETIC, variants: portraitSizes },
 ];
 
 export function getPrintSelection(artworkId: string, variantId: string) {
